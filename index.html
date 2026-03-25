@@ -142,8 +142,8 @@
     .wizard-bottom { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--mp-clouds); margin-top: 2rem; }
     .wizard-bottom .back-btn { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--mp-teal); font-size: 0.9375rem; font-weight: 500; cursor: pointer; border: none; background: none; font-family: inherit; }
     .wizard-bottom .back-btn:hover { text-decoration: underline; }
-    .wizard-bottom .need-help { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.25rem; border: 1px solid var(--mp-clouds); border-radius: 100px; font-size: 0.875rem; color: var(--mp-dark); cursor: pointer; background: var(--mp-white); font-family: inherit; }
-    .wizard-bottom .need-help:hover { border-color: var(--mp-teal); }
+    .wizard-bottom .need-help { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.25rem; border: 1px solid var(--mp-teal); border-radius: 100px; font-size: 0.875rem; color: var(--mp-teal); cursor: pointer; background: var(--mp-white); font-family: inherit; font-weight: 500; transition: all 0.2s; }
+    .wizard-bottom .need-help:hover { background: var(--mp-teal-light); border-color: var(--mp-teal); }
     .privacy-line { text-align: center; font-size: 0.8125rem; color: var(--mp-gray); margin-top: 0.75rem; }
     .privacy-line a { color: var(--mp-teal); }
 
@@ -325,7 +325,7 @@
       <div style="text-align:right;"><button class="add-link" onclick="void(0)">Add tranche +</button></div>
       <div class="wizard-bottom">
         <button class="back-btn" onclick="goToPage('choose-path')">← Back</button>
-        <button class="need-help" onclick="void(0)">Need help? <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <button class="need-help" onclick="goToPage('ai-assistant')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/></svg> Need help? Talk to AI assistant</button>
         <button class="btn-primary" onclick="wizardNext(0)">Save &amp; continue</button>
       </div>
       <p class="privacy-line">By continuing, I accept the <a href="#">privacy policy</a> of Helvetia</p>
@@ -382,7 +382,7 @@
       <div style="text-align:center; margin-top:1.5rem;"><span class="btn-teal btn-primary" style="padding:0.35rem 1rem; font-size:0.8125rem;">Customer 1</span></div>
       <div class="wizard-bottom">
         <button class="back-btn" onclick="wizardBack()">← Back</button>
-        <button class="need-help" onclick="void(0)">Need help? <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <button class="need-help" onclick="goToPage('ai-assistant')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/></svg> Need help? Talk to AI assistant</button>
         <button class="btn-primary" onclick="wizardNext(1)">Save &amp; continue</button>
       </div>
       <p class="privacy-line">By continuing, I accept the <a href="#">privacy policy</a> of Helvetia</p>
@@ -422,7 +422,7 @@
       <div style="text-align:right;"><button class="add-link" onclick="void(0)">Add tranche +</button></div>
       <div class="wizard-bottom">
         <button class="back-btn" onclick="wizardBack()">← Back</button>
-        <button class="need-help" onclick="void(0)">Need help? <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+        <button class="need-help" onclick="goToPage('ai-assistant')"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/></svg> Need help? Talk to AI assistant</button>
         <button class="btn-primary" onclick="wizardNext(2)">Save &amp; continue</button>
       </div>
       <p class="privacy-line">By continuing, I accept the <a href="#">privacy policy</a> of Helvetia</p>
@@ -488,8 +488,6 @@
     </div>
   </div>
 
-  <elevenlabs-convai agent-id="agent_0301khnwgrw0fkpbhf4am3f8npdx" server-location="eu-residency" dynamic-variables='{"name":"Charles Alzon","brand_name":"MoneyPark","advisor_name":"Stefan Heitmann","PRIOR_CONTACT":"false","mortgage_year":"2016","months_to_expiry":"11","current_rate":"1.45","property_address":"Bahnhofstrasse 12, 8001 Zürich","interest":"Mortgage refinancing","language_spoken":"en","leadId":"demo-lead-001"}'></elevenlabs-convai>
-
   <div class="mp-footer">
     <div class="mp-footer-inner">
       <div class="mp-footer-col"><strong>Jobs &amp; careers</strong><a href="#">Careers at MoneyPark</a><a href="#">Careers at Helvetia</a></div>
@@ -514,10 +512,12 @@
     <div class="ai-disclosure" style="text-align:left; margin-top:2rem;">
       <strong>Note:</strong> You are speaking with an AI-powered assistant, not a human. Your data is protected under GDPR and Swiss data protection law.
     </div>
+    <p style="font-size:0.9375rem; color:var(--mp-gray); margin-bottom:1.5rem; text-align:left;">Ask questions like: <em>"Where do I get my salary slip?"</em>, <em>"What is a SARON mortgage?"</em>, or <em>"Can you help me understand my options?"</em> — then return to the online flow when you're ready.</p>
     <div style="margin:2rem 0;">
       <elevenlabs-convai agent-id="agent_0301khnwgrw0fkpbhf4am3f8npdx" server-location="eu-residency" dynamic-variables='{"name":"Charles Alzon","brand_name":"MoneyPark","advisor_name":"Stefan Heitmann","PRIOR_CONTACT":"false","mortgage_year":"2016","months_to_expiry":"11","current_rate":"1.45","property_address":"Bahnhofstrasse 12, 8001 Zürich","interest":"Mortgage refinancing","language_spoken":"en","leadId":"demo-lead-001"}'></elevenlabs-convai>
     </div>
-    <div class="back-link" style="margin-top:1rem;"><button class="ghost-link" onclick="goToPage('choose-path')">← Back to selection</button></div>
+    <div class="back-link" style="margin-top:1rem;"><button class="ghost-link" onclick="goToPage('self-onboard')">← Return to online flow</button></div>
+    <div class="back-link" style="margin-top:0.5rem;"><button class="ghost-link" onclick="goToPage('choose-path')" style="font-size:0.8125rem; color:var(--mp-gray);">← Back to selection</button></div>
   </div>
 </div>
 

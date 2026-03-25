@@ -28,6 +28,7 @@
       --mp-offer-gold: #DAA520;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
     body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--mp-dark); background: var(--mp-soft); min-height: 100vh; }
     .page { display: none; min-height: 100vh; }
     .page.active { display: block; }
@@ -67,7 +68,8 @@
     .select-wrapper::after { content: ''; position: absolute; right: 0.875rem; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid var(--mp-dark); pointer-events: none; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; }
-    @media (max-width: 520px) { .form-row, .form-row-3 { grid-template-columns: 1fr; } }
+    .form-row-zip { grid-template-columns: 1fr 2fr 80px; }
+    @media (max-width: 520px) { .form-row, .form-row-3, .form-row-zip { grid-template-columns: 1fr; } }
     .form-section-title { font-size: 1.125rem; font-weight: 600; margin: 1.5rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--mp-clouds); }
     .form-section-title:first-child { border-top: none; padding-top: 0; margin-top: 0; }
     .checkbox-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; font-size: 0.9375rem; cursor: pointer; }
@@ -119,8 +121,9 @@
     .back-link { display: block; text-align: center; margin-top: 1rem; }
 
     /* Stepper nav (MoneyPark style) */
-    .stepper-nav { display: flex; justify-content: center; align-items: center; padding: 1.25rem 2rem; background: var(--mp-white); border-bottom: 1px solid var(--mp-clouds); gap: 0; flex-wrap: wrap; }
-    .stepper-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.25rem; border: 2px solid var(--mp-dark); border-radius: 100px; font-size: 0.8125rem; font-weight: 600; color: var(--mp-dark); cursor: pointer; transition: all 0.2s; background: var(--mp-white); position: relative; white-space: nowrap; }
+    .stepper-nav { display: flex; justify-content: center; align-items: center; padding: 1.25rem 2rem; background: var(--mp-white); border-bottom: 1px solid var(--mp-clouds); gap: 0; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .stepper-nav::-webkit-scrollbar { display: none; }
+    .stepper-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.25rem; border: 2px solid var(--mp-dark); border-radius: 100px; font-size: 0.8125rem; font-weight: 600; color: var(--mp-dark); cursor: pointer; transition: all 0.2s; background: var(--mp-white); position: relative; white-space: nowrap; flex-shrink: 0; }
     .stepper-item.active { background: var(--mp-dark); color: var(--mp-white); }
     .stepper-item.done { background: var(--mp-dark); color: var(--mp-white); }
     .stepper-item .step-num { font-weight: 700; }
@@ -199,8 +202,6 @@
 
     /* ===== RESPONSIVE & MOBILE FIXES ===== */
     .form-group select { appearance: none; -webkit-appearance: none; }
-    .form-row-dob { grid-template-columns: 70px 100px 80px 1fr; gap: 0.5rem; align-items: end; }
-    .form-row-address { grid-template-columns: 2fr 1fr; }
     .stepper-item:not(.active):not(.done) { opacity: 0.5; cursor: default; }
     .edit-data-link { border: none; background: none; font-family: inherit; padding: 0; }
     .edit-data-link:hover { text-decoration: underline; }
@@ -222,9 +223,8 @@
     }
 
     @media (max-width: 640px) {
-      .stepper-nav { overflow-x: auto; -webkit-overflow-scrolling: touch; justify-content: flex-start; flex-wrap: nowrap; padding: 0.75rem 1rem; scrollbar-width: none; }
-      .stepper-nav::-webkit-scrollbar { display: none; }
-      .stepper-item { font-size: 0.75rem; padding: 0.4rem 0.75rem; flex-shrink: 0; }
+      .stepper-nav { justify-content: flex-start; padding: 0.75rem 1rem; }
+      .stepper-item { font-size: 0.75rem; padding: 0.4rem 0.75rem; }
       .stepper-arrow { width: 16px; height: 16px; margin: 0 0.125rem; }
       .offer-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
       .offer-cost { text-align: left; min-width: unset; }
@@ -233,7 +233,9 @@
       .offer-card { padding-top: 2rem; }
       .wizard-container { padding: 1.5rem 1rem 1rem; }
       .wizard-step { padding-bottom: 4rem; }
-      .form-row-dob { grid-template-columns: 1fr 1fr; }
+      .hero { padding: 2.5rem 1.25rem 3rem; }
+      .hero h1 { font-size: 1.5rem; }
+      .form-section { padding: 0 1rem 2rem; }
     }
 
     @media (max-width: 520px) {
@@ -244,10 +246,7 @@
       .header-helvetia { display: none; }
       .header-user { font-size: 0; gap: 0; }
       .header-user .user-avatar { width: 36px; height: 36px; font-size: 0.8125rem; }
-      .hero { padding: 2.5rem 1.25rem 3rem; }
-      .hero h1 { font-size: 1.5rem; }
       .hero p { font-size: 0.9375rem; }
-      .form-section { padding: 0 1rem 2rem; }
       .form-card { padding: 1.5rem; }
       .page-heading { padding: 2rem 1rem 0.5rem; }
       .page-heading h1 { font-size: 1.5rem; }
@@ -260,7 +259,7 @@
       .inner-page { padding: 0 1rem 2rem; }
       .confirm-section { padding: 3rem 1rem; }
       .confirm-section h1 { font-size: 1.375rem; }
-      .form-row-address { grid-template-columns: 1fr; }
+    
     }
 
     @media (max-width: 400px) {
@@ -271,7 +270,6 @@
       .form-group input, .form-group select { padding: 0.625rem 0.75rem; }
       .btn-primary, .btn-secondary { font-size: 0.875rem; padding: 0.625rem 1rem; min-height: 44px; }
       .offer-card { padding: 1rem 1.25rem; padding-top: 2rem; }
-      .form-row-dob { grid-template-columns: 1fr; }
       .ai-help-fab { padding: 0.625rem 1rem; font-size: 0.8125rem; bottom: 1rem; right: 1rem; }
       .wizard-container { padding: 1.25rem 0.75rem 1rem; }
     }
@@ -365,18 +363,15 @@
   <div class="wizard-container">
     <!-- STEP 1: My property -->
     <div class="wizard-step active" data-step="0">
-      <div class="form-row">
+      <div class="form-row form-row-zip">
         <div class="form-group">
           <label>ZIP code <span class="required">*</span></label>
           <div class="select-wrapper"><select><option>5400 Baden</option><option>8001 Zürich</option><option>3000 Bern</option><option>1200 Genève</option><option>6900 Lugano</option></select></div>
         </div>
-        <div class="form-row form-row-address">
-          <div class="form-group"><label>Address <span class="required">*</span> / Nr.</label><input type="text" value="wiesenstrasse"></div>
-          <div class="form-group"><label>&nbsp;</label><input type="text" value="1"></div>
-        </div>
+        <div class="form-group"><label>Address <span class="required">*</span></label><input type="text" value="wiesenstrasse"></div>
+        <div class="form-group"><label>Nr.</label><input type="text" value="1"></div>
       </div>
-      <button class="btn-teal btn-primary" style="width:auto; float:right; margin-bottom:1rem;" onclick="void(0)">Search</button>
-      <div style="clear:both;"></div>
+      <div style="text-align:right; margin-bottom:1rem;"><button class="btn-teal btn-primary" style="width:auto;" onclick="void(0)">Search</button></div>
       <div class="map-placeholder">Map — Karte / Satellit</div>
       <div class="form-row">
         <div class="form-group">
@@ -424,18 +419,23 @@
         <div class="form-group"><label>First name <span class="required">*</span></label><input type="text" value="Charles"></div>
         <div class="form-group"><label>Last name <span class="required">*</span></label><input type="text" value="Alzon"></div>
       </div>
-      <div class="form-row form-row-dob">
-        <div class="form-group"><label>Date of birth <span class="required">*</span></label><input type="text" value="15"></div>
-        <div class="form-group"><label>&nbsp;</label><div class="select-wrapper"><select><option>Mar</option><option>Jan</option><option>Feb</option><option>Apr</option></select></div></div>
-        <div class="form-group"><label>&nbsp;</label><input type="text" value="1990"></div>
-        <div class="form-group"><label>US Person</label><div class="checkbox-row"><input type="checkbox"> <span class="info-icon">i</span></div></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Date of birth <span class="required">*</span></label>
+          <div style="display:flex; gap:0.5rem;">
+            <input type="text" value="15" style="width:60px; flex-shrink:0;">
+            <div class="select-wrapper" style="flex:1;"><select><option>Mar</option><option>Jan</option><option>Feb</option><option>Apr</option></select></div>
+            <input type="text" value="1990" style="width:70px; flex-shrink:0;">
+          </div>
+        </div>
+        <div class="form-group"><label>US Person</label><div class="checkbox-row" style="margin-top:0.25rem;"><input type="checkbox"> <span class="info-icon">i</span></div></div>
       </div>
       <div class="form-row">
         <div class="form-group">
           <label>Nationality <span class="required">*</span></label>
-          <select size="4" style="width:100%; padding:0.5rem; border:1px solid var(--mp-clouds); border-radius:4px; font-family:inherit; font-size:0.9375rem;">
+          <div class="select-wrapper"><select>
             <option>—</option><option selected>Switzerland</option><option>Germany</option><option>Italy</option><option>France</option>
-          </select>
+          </select></div>
         </div>
         <div class="form-group">
           <label>Employment status <span class="required">*</span></label>
@@ -454,7 +454,7 @@
         <div class="form-group"><label>Further income <span class="info-icon">i</span></label><input type="text" placeholder=""></div>
         <div class="form-group"><label>Further financial commitments <span class="info-icon">i</span></label><input type="text" placeholder=""></div>
       </div>
-      <div class="form-group"><label>Pension fund + AHV <span class="info-icon">i</span></label><input type="text" placeholder="" style="max-width:50%;"></div>
+      <div class="form-group"><label>Pension fund + AHV <span class="info-icon">i</span></label><input type="text" placeholder=""></div>
       <h3 class="form-section-title">Own funds</h3>
       <div class="checkbox-row"><input type="checkbox"> Do you want to pledge assets? <span class="info-icon">i</span></div>
       <div class="checkbox-row"><input type="checkbox"> Do you have additional objects? <span class="info-icon">i</span></div>
@@ -498,7 +498,7 @@
       </div>
       <div class="form-group">
         <label>Date of financing <span class="required">*</span></label>
-        <input type="text" value="18.05.2026" style="max-width:50%;">
+        <input type="text" value="18.05.2026">
       </div>
       <div style="text-align:right;"><button class="add-link" onclick="void(0)">Add tranche +</button></div>
       <div class="wizard-bottom">

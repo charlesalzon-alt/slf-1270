@@ -774,8 +774,11 @@
     };
     var agentId = document.getElementById('dv-agent_id').value;
     var langCode = document.getElementById('dv-language_spoken').value;
+    var customerName = document.getElementById('dv-name').value;
+    var greetings = { en: 'Hello ' + customerName + '?', de: 'Hallo ' + customerName + '?', fr: 'Bonjour ' + customerName + ' ?', it: 'Buongiorno ' + customerName + '?' };
+    var firstMsg = greetings[langCode] || greetings['en'];
     var container = document.getElementById('ai-widget-container');
-    container.innerHTML = '<elevenlabs-convai agent-id="' + agentId + '" server-location="eu-residency" language="' + langCode + '" dynamic-variables=\'' + JSON.stringify(vars) + '\'></elevenlabs-convai>';
+    container.innerHTML = '<elevenlabs-convai agent-id="' + agentId + '" server-location="eu-residency" language="' + langCode + '" first-message="' + firstMsg.replace(/"/g, '&quot;') + '" dynamic-variables=\'' + JSON.stringify(vars) + '\'></elevenlabs-convai>';
     document.getElementById('ai-vars-form').style.display = 'none';
     document.getElementById('launch-agent-btn').style.display = 'none';
   }

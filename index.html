@@ -773,8 +773,9 @@
       leadId: document.getElementById('dv-leadId').value
     };
     var agentId = document.getElementById('dv-agent_id').value;
+    var langCode = document.getElementById('dv-language_spoken').value;
     var container = document.getElementById('ai-widget-container');
-    container.innerHTML = '<elevenlabs-convai agent-id="' + agentId + '" server-location="eu-residency" dynamic-variables=\'' + JSON.stringify(vars) + '\'></elevenlabs-convai>';
+    container.innerHTML = '<elevenlabs-convai agent-id="' + agentId + '" server-location="eu-residency" language="' + langCode + '" dynamic-variables=\'' + JSON.stringify(vars) + '\'></elevenlabs-convai>';
     document.getElementById('ai-vars-form').style.display = 'none';
     document.getElementById('launch-agent-btn').style.display = 'none';
   }
@@ -798,6 +799,19 @@
       document.getElementById('ai-widget-container').innerHTML = '';
       document.getElementById('ai-vars-form').style.display = '';
       document.getElementById('launch-agent-btn').style.display = '';
+      var addrInput = document.getElementById('address-input');
+      if (addrInput && addrInput.value.trim()) {
+        document.getElementById('dv-property_address').value = addrInput.value.trim();
+      }
+      var interestSelect = document.getElementById('interest-select');
+      if (interestSelect && interestSelect.value) {
+        var dvInterest = document.getElementById('dv-interest');
+        for (var i = 0; i < dvInterest.options.length; i++) {
+          if (dvInterest.options[i].value === interestSelect.options[interestSelect.selectedIndex].text) {
+            dvInterest.selectedIndex = i; break;
+          }
+        }
+      }
     }
     document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
     var target = document.getElementById('page-' + pageId);

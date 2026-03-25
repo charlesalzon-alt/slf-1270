@@ -594,14 +594,68 @@
     <div class="header-brand"><div class="header-logo">MONEY<svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/></svg>PARK</div><div class="header-helvetia">a company of<br><strong>helvetia</strong></div></div>
     <div class="header-right"><a href="tel:+41442007597" class="header-phone"><svg class="phone-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+41 44 200 75 97</a><div class="header-user"><div class="user-avatar">CA</div>Charles Alzon</div></div>
   </header>
-  <div class="inner-page" style="text-align:center;">
+  <div class="inner-page" style="text-align:center; max-width:640px;">
     <div class="ai-disclosure" style="text-align:left; margin-top:2rem;">
       <strong>Note:</strong> You are speaking with an AI-powered assistant, not a human. Your data is protected under GDPR and Swiss data protection law.
     </div>
-    <p style="font-size:0.9375rem; color:var(--mp-gray); margin-bottom:1.5rem; text-align:left;">Ask questions like: <em>"Where do I get my salary slip?"</em>, <em>"What is a SARON mortgage?"</em>, or <em>"Can you help me understand my options?"</em> — then return to the online flow when you're ready.</p>
-    <div style="margin:2rem 0;">
-      <elevenlabs-convai agent-id="agent_0301khnwgrw0fkpbhf4am3f8npdx" server-location="eu-residency" dynamic-variables='{"name":"Charles Alzon","brand_name":"MoneyPark","advisor_name":"Stefan Heitmann","PRIOR_CONTACT":"false","mortgage_year":"2016","months_to_expiry":"11","current_rate":"1.45","property_address":"Bahnhofstrasse 12, 8001 Zürich","interest":"Mortgage refinancing","language_spoken":"en","leadId":"demo-lead-001"}'></elevenlabs-convai>
+    <p style="font-size:0.9375rem; color:var(--mp-gray); margin-bottom:1.5rem; text-align:left;">Ask questions like: <em>"Where do I get my salary slip?"</em>, <em>"What is a SARON mortgage?"</em>, or <em>"Can you help me understand my options?"</em></p>
+
+    <!-- Editable dynamic variables -->
+    <div id="ai-vars-form" style="text-align:left; margin-bottom:1.5rem;">
+      <h3 style="font-size:0.9375rem; font-weight:600; margin-bottom:1rem; color:var(--mp-dark);">Agent context variables <span style="font-weight:400; color:var(--mp-gray); font-size:0.8125rem;">— adjust before starting</span></h3>
+      <div class="form-row">
+        <div class="form-group"><label>Customer name</label><input type="text" id="dv-name" value="Charles Alzon"></div>
+        <div class="form-group"><label>Property address</label><input type="text" id="dv-property_address" value="Bahnhofstrasse 12, 8001 Zürich"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Interest</label>
+          <div class="select-wrapper"><select id="dv-interest">
+            <option value="Mortgage refinancing" selected>Mortgage refinancing</option>
+            <option value="Property purchase">Property purchase</option>
+            <option value="Renovation financing">Renovation financing</option>
+            <option value="General advice">General advice</option>
+          </select></div>
+        </div>
+        <div class="form-group">
+          <label>Language</label>
+          <div class="select-wrapper"><select id="dv-language_spoken">
+            <option value="en" selected>English</option>
+            <option value="de">Deutsch</option>
+            <option value="fr">Français</option>
+            <option value="it">Italiano</option>
+          </select></div>
+        </div>
+      </div>
+      <div class="form-row-3">
+        <div class="form-group"><label>Months to expiry</label><input type="number" id="dv-months_to_expiry" value="11"></div>
+        <div class="form-group"><label>Mortgage year</label><input type="number" id="dv-mortgage_year" value="2016"></div>
+        <div class="form-group"><label>Current rate (%)</label><input type="text" id="dv-current_rate" value="1.45"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Advisor name</label><input type="text" id="dv-advisor_name" value="Stefan Heitmann"></div>
+        <div class="form-group"><label>Brand name</label><input type="text" id="dv-brand_name" value="MoneyPark"></div>
+      </div>
+      <div class="form-row-3">
+        <div class="form-group">
+          <label>Prior contact</label>
+          <div class="select-wrapper"><select id="dv-PRIOR_CONTACT">
+            <option value="false" selected>No</option>
+            <option value="true">Yes</option>
+          </select></div>
+        </div>
+        <div class="form-group"><label>Lead ID</label><input type="text" id="dv-leadId" value="demo-lead-001"></div>
+        <div class="form-group"><label>Agent ID</label><input type="text" id="dv-agent_id" value="agent_0301khnwgrw0fkpbhf4am3f8npdx" style="font-size:0.75rem;"></div>
+      </div>
     </div>
+
+    <button class="btn-primary full-width btn-teal" onclick="launchAgent()" id="launch-agent-btn" style="margin-bottom:0.5rem;">
+      <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+      Start AI conversation
+    </button>
+
+    <div id="ai-widget-container" style="margin:1.5rem 0;"></div>
+
     <div class="back-link" style="margin-top:1rem;"><button class="ghost-link" onclick="goToPage('self-onboard')">← Return to online flow</button></div>
     <div class="back-link" style="margin-top:0.5rem;"><button class="ghost-link" onclick="goToPage('choose-path')" style="font-size:0.8125rem; color:var(--mp-gray);">← Back to selection</button></div>
   </div>
@@ -704,6 +758,27 @@
     }
   }
 
+  function launchAgent() {
+    var vars = {
+      name: document.getElementById('dv-name').value,
+      brand_name: document.getElementById('dv-brand_name').value,
+      advisor_name: document.getElementById('dv-advisor_name').value,
+      PRIOR_CONTACT: document.getElementById('dv-PRIOR_CONTACT').value,
+      mortgage_year: document.getElementById('dv-mortgage_year').value,
+      months_to_expiry: document.getElementById('dv-months_to_expiry').value,
+      current_rate: document.getElementById('dv-current_rate').value,
+      property_address: document.getElementById('dv-property_address').value,
+      interest: document.getElementById('dv-interest').value,
+      language_spoken: document.getElementById('dv-language_spoken').value,
+      leadId: document.getElementById('dv-leadId').value
+    };
+    var agentId = document.getElementById('dv-agent_id').value;
+    var container = document.getElementById('ai-widget-container');
+    container.innerHTML = '<elevenlabs-convai agent-id="' + agentId + '" server-location="eu-residency" dynamic-variables=\'' + JSON.stringify(vars) + '\'></elevenlabs-convai>';
+    document.getElementById('ai-vars-form').style.display = 'none';
+    document.getElementById('launch-agent-btn').style.display = 'none';
+  }
+
   function goToPage(pageId) {
     if (pageId === 'choose-path') {
       var addrEl = document.getElementById('address-input');
@@ -718,6 +793,11 @@
       wizardCurrentStep = 0;
       wizardMaxStep = 0;
       renderWizard();
+    }
+    if (pageId === 'ai-assistant') {
+      document.getElementById('ai-widget-container').innerHTML = '';
+      document.getElementById('ai-vars-form').style.display = '';
+      document.getElementById('launch-agent-btn').style.display = '';
     }
     document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
     var target = document.getElementById('page-' + pageId);

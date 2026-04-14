@@ -288,22 +288,6 @@
     </div>
   </section>
 
-  <!-- Callback alternative -->
-  <div class="callback-divider"><div class="line"></div><span>or</span><div class="line"></div></div>
-  <section class="callback-section">
-    <div class="callback-card">
-      <h3>Prefer a human? Request a callback</h3>
-      <p>Fill in your details and a MoneyPark advisor will contact you.</p>
-      <div class="callback-card form-row">
-        <div class="form-group"><label>Full name</label><input type="text" id="cb-name" placeholder="Hans Müller"></div>
-        <div class="form-group"><label>Phone number</label><input type="tel" id="cb-phone" placeholder="+41 79 123 45 67"></div>
-      </div>
-      <div class="form-group"><label>Preferred time</label><input type="text" id="cb-time" placeholder="e.g. Tuesday morning, any afternoon"></div>
-      <div class="form-group"><label>Anything else? <span style="color:var(--mp-gray);font-weight:400;">(optional)</span></label><textarea id="cb-notes" placeholder="Questions, preferences, or context for the advisor..."></textarea></div>
-      <button class="btn-primary full-width" onclick="submitCallback()">Request callback &rarr;</button>
-    </div>
-  </section>
-
   <!-- Debug panel (for internal testing) -->
   <div class="debug-panel" id="debug-panel" style="display:none;">
     <h3>Agent context variables — testing</h3>
@@ -348,6 +332,64 @@
   </div>
 
   <!-- Footer -->
+  <div class="mp-footer">
+    <div class="mp-footer-inner">
+      <div class="mp-footer-col"><strong>Jobs &amp; careers</strong><a href="#">Careers at MoneyPark</a><a href="#">Careers at Helvetia</a></div>
+      <div class="mp-footer-col"><strong>News &amp; media</strong><a href="#">Press releases</a><a href="#">Publications</a><a href="#">Blog</a></div>
+      <div class="mp-footer-col"><strong>About us</strong><a href="#">Partners of MoneyPark</a><a href="#">B2B solutions</a></div>
+      <div class="header-brand" style="margin-left:auto;">
+        <div class="header-logo" style="font-size:1rem;">MONEY<svg class="logo-icon" viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/></svg>PARK</div>
+        <div class="header-helvetia">a company of<br><strong>helvetia</strong></div>
+      </div>
+    </div>
+    <div class="mp-footer-bottom">&copy; MoneyPark AG &middot; Z&uuml;richstrasse 130 &middot; CH-8600 D&uuml;bendorf &middot; +41 58 280 10 00<br><a href="#">Imprint</a> &middot; <a href="#">Legal info</a> &middot; <a href="#">Privacy policy</a></div>
+    <p class="co-brand" style="font-size:0.6875rem;color:var(--mp-sea);text-align:center;margin-top:0.75rem;">In cooperation with PriceHubble</p>
+  </div>
+</div>
+
+<!-- ==================== PAGE: CALLBACK REQUEST ==================== -->
+<div class="page" id="page-callback">
+  <header class="header">
+    <div class="header-brand">
+      <div class="header-logo">MONEY<svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/></svg>PARK</div>
+      <div class="header-helvetia">a company of<br><strong>helvetia</strong></div>
+    </div>
+    <div class="header-right">
+      <a href="tel:+41442007597" class="header-phone"><svg class="phone-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+41 44 200 75 97</a>
+    </div>
+  </header>
+
+  <section class="landing-hero" style="padding:2.5rem 2rem 3rem;">
+    <h1 style="font-size:1.75rem;">Request a callback from your advisor</h1>
+    <p>Fill in the form below and a MoneyPark advisor will call you at a time that suits you.</p>
+  </section>
+
+  <section style="max-width:560px;margin:-1.5rem auto 0;padding:0 1.5rem 2rem;position:relative;z-index:1;">
+    <div class="callback-card">
+      <div class="callback-card form-row">
+        <div class="form-group"><label>Full name</label><input type="text" id="cb-name" placeholder="Hans Müller"></div>
+        <div class="form-group"><label>Phone number</label><input type="tel" id="cb-phone" placeholder="+41 79 123 45 67"></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" id="cb-email" placeholder="hans.mueller@example.com"></div>
+      <div class="form-group"><label>Preferred time</label><input type="text" id="cb-time" placeholder="e.g. Tuesday morning, any afternoon"></div>
+      <div class="form-group"><label>Anything else? <span style="color:var(--mp-gray);font-weight:400;">(optional)</span></label><textarea id="cb-notes" placeholder="Questions, preferences, or context for the advisor..."></textarea></div>
+      <button class="btn-primary btn-teal full-width" onclick="submitCallback()">Request callback &rarr;</button>
+      <p style="text-align:center;margin-top:1.25rem;font-size:0.875rem;color:var(--mp-gray);">Or <a href="?action=ai" class="ghost-link" style="font-size:0.875rem;">talk to Anna, our AI assistant</a> — available 24/7</p>
+    </div>
+
+    <div style="margin-top:2rem;background:var(--mp-white);border-radius:12px;padding:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
+      <div style="display:flex;align-items:flex-start;gap:1rem;">
+        <div style="width:40px;height:40px;background:var(--mp-teal-light);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg style="width:20px;height:20px;stroke:var(--mp-teal);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <p style="font-size:0.875rem;font-weight:600;margin-bottom:0.25rem;">Your data is protected</p>
+          <p style="font-size:0.8125rem;color:var(--mp-gray);line-height:1.6;">Your information is processed by PriceHubble AG on behalf of MoneyPark, in full compliance with GDPR and Swiss data protection law (nDSG). It will be shared exclusively with your MoneyPark advisor.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="mp-footer">
     <div class="mp-footer-inner">
       <div class="mp-footer-col"><strong>Jobs &amp; careers</strong><a href="#">Careers at MoneyPark</a><a href="#">Careers at Helvetia</a></div>
@@ -449,11 +491,9 @@
       if (dvL) dvL.value = CTX.leadId;
     }
 
-    if (action === 'callback') {
-      setTimeout(function() {
-        var cbSection = document.querySelector('.callback-section');
-        if (cbSection) cbSection.scrollIntoView({ behavior: 'smooth' });
-      }, 500);
+    if (CTX.email) {
+      var cbEmail = document.getElementById('cb-email');
+      if (cbEmail) cbEmail.value = CTX.email;
     }
   }
 
@@ -531,8 +571,14 @@
 
   parseTokenFromUrl();
 
-  var skipConsent = new URLSearchParams(window.location.search).get('consent');
-  if (skipConsent === 'skip') {
+  var urlParams = new URLSearchParams(window.location.search);
+  var skipConsent = urlParams.get('consent');
+  var urlAction = urlParams.get('action');
+
+  if (urlAction === 'callback') {
+    document.getElementById('consent-modal').classList.add('hidden');
+    document.getElementById('page-callback').classList.add('active');
+  } else if (skipConsent === 'skip') {
     document.getElementById('consent-modal').classList.add('hidden');
     document.getElementById('page-landing').classList.add('active');
     launchAgent();

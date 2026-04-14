@@ -284,14 +284,6 @@
       <div class="ai-disclosure">
         <strong>Note:</strong> You are speaking with an AI-powered assistant, not a human. Your data is protected under GDPR and Swiss data protection law, and will be shared exclusively with your MoneyPark advisor.
       </div>
-      <div class="ai-mode-toggle">
-        <button class="active" onclick="setAiMode('voice')" id="mode-voice">Voice</button>
-        <button onclick="setAiMode('text')" id="mode-text">Text chat</button>
-      </div>
-      <button class="btn-primary btn-teal full-width" id="start-ai-btn" onclick="launchAgent()">
-        <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
-        Start conversation with Anna
-      </button>
       <div id="ai-widget-container" class="ai-widget-wrapper"></div>
     </div>
   </section>
@@ -468,17 +460,12 @@
   function acceptConsent() {
     document.getElementById('consent-modal').classList.add('hidden');
     document.getElementById('page-landing').classList.add('active');
+    launchAgent();
   }
 
   document.getElementById('consent-checkbox').addEventListener('change', function() {
     document.getElementById('consent-accept-btn').disabled = !this.checked;
   });
-
-  function setAiMode(mode) {
-    aiMode = mode;
-    document.getElementById('mode-voice').classList.toggle('active', mode === 'voice');
-    document.getElementById('mode-text').classList.toggle('active', mode === 'text');
-  }
 
   function getAgentVars() {
     return {
@@ -519,8 +506,6 @@
       + '" first-message="' + firstMsg.replace(/"/g, '&quot;')
       + '" dynamic-variables=\'' + JSON.stringify(vars) + '\'></elevenlabs-convai>';
 
-    document.getElementById('start-ai-btn').style.display = 'none';
-    document.querySelector('.ai-mode-toggle').style.display = 'none';
   }
 
   function submitCallback() {
@@ -550,6 +535,7 @@
   if (skipConsent === 'skip') {
     document.getElementById('consent-modal').classList.add('hidden');
     document.getElementById('page-landing').classList.add('active');
+    launchAgent();
   }
 </script>
 </body>

@@ -22,10 +22,6 @@
       --mp-white: #ffffff;
       --mp-gray: #6B6B6B;
       --mp-mid-gray: #C2C2C2;
-      --mp-green: #008060;
-      --mp-green-light: #E6F5F0;
-      --mp-offer-green: #4CAF50;
-      --mp-offer-gold: #DAA520;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { overflow-x: hidden; }
@@ -43,137 +39,104 @@
     .header-phone { color: var(--mp-dark); text-decoration: none; font-size: 0.9375rem; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
     .header-phone:hover { color: var(--mp-teal); }
     .phone-icon { width: 18px; height: 18px; fill: currentColor; }
-    .header-user { display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; font-weight: 500; color: var(--mp-dark); }
-    .user-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--mp-teal); color: var(--mp-white); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; letter-spacing: 0; }
 
-    /* Shared header block */
-    .mp-header-inner { display: contents; }
-
-    /* Hero */
-    .hero { background: var(--mp-dark); padding: 3.5rem 2rem 4rem; text-align: center; }
-    .hero h1 { color: var(--mp-white); font-size: 2.25rem; font-weight: 700; max-width: 700px; margin: 0 auto 1rem; line-height: 1.25; }
-    .hero p { color: #CCCCCC; font-size: 1.125rem; max-width: 600px; margin: 0 auto; line-height: 1.6; }
-
-    /* Form basics */
-    .form-section { max-width: 560px; margin: -2rem auto 0; padding: 0 1.5rem 2.5rem; position: relative; z-index: 1; }
-    .form-card { background: var(--mp-white); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 24px rgba(26,26,46,0.08); }
-    .form-group { margin-bottom: 1.25rem; }
-    .form-group label { display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.375rem; color: var(--mp-dark); }
-    .form-group .optional { color: var(--mp-gray); font-weight: 400; font-size: 0.8125rem; }
-    .form-group .required { color: #C00; }
-    .form-group input, .form-group select { width: 100%; padding: 0.75rem 0.875rem; border: 1px solid var(--mp-clouds); border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: var(--mp-dark); background: var(--mp-white); transition: border-color 0.2s; }
-    .form-group input::placeholder { color: var(--mp-sea); }
-    .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--mp-teal); }
-    .select-wrapper { position: relative; }
-    .select-wrapper::after { content: ''; position: absolute; right: 0.875rem; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid var(--mp-dark); pointer-events: none; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; }
-    .form-row-zip { grid-template-columns: 1fr 2fr 80px; }
-    @media (max-width: 520px) { .form-row, .form-row-3, .form-row-zip { grid-template-columns: 1fr; } }
-    .form-section-title { font-size: 1.125rem; font-weight: 600; margin: 1.5rem 0 1rem; padding-top: 1rem; border-top: 1px solid var(--mp-clouds); }
-    .form-section-title:first-child { border-top: none; padding-top: 0; margin-top: 0; }
-    .checkbox-row { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; font-size: 0.9375rem; cursor: pointer; }
-    .checkbox-row input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--mp-teal); cursor: pointer; }
-    .add-link { color: var(--mp-teal); font-size: 0.875rem; font-weight: 500; cursor: pointer; display: inline-flex; align-items: center; gap: 0.25rem; background: none; border: none; font-family: inherit; margin-top: 0.5rem; }
-    .add-link:hover { text-decoration: underline; }
-    .info-icon { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--mp-sea); color: var(--mp-sea); font-size: 0.6875rem; font-weight: 600; cursor: help; margin-left: 0.25rem; flex-shrink: 0; }
+    /* Consent Modal */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(26,26,46,0.6); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 1rem; }
+    .modal-overlay.hidden { display: none; }
+    .modal-card { background: var(--mp-white); border-radius: 12px; max-width: 520px; width: 100%; padding: 2.5rem 2rem; box-shadow: 0 8px 32px rgba(0,0,0,0.15); animation: modalIn 0.3s ease; }
+    @keyframes modalIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .modal-card .modal-logo { text-align: center; margin-bottom: 1.5rem; }
+    .modal-card h2 { font-size: 1.375rem; font-weight: 700; text-align: center; margin-bottom: 0.75rem; line-height: 1.35; }
+    .modal-card p { font-size: 0.9375rem; color: var(--mp-text); line-height: 1.7; margin-bottom: 1rem; }
+    .modal-card ul { margin: 0 0 1.25rem 1.25rem; font-size: 0.875rem; color: var(--mp-text); line-height: 1.8; }
+    .modal-card .legal-box { background: var(--mp-soft); border-radius: 8px; padding: 1rem 1.25rem; font-size: 0.8125rem; color: var(--mp-gray); line-height: 1.7; margin-bottom: 1.5rem; }
+    .modal-card .legal-box a { color: var(--mp-teal); }
+    .modal-card .consent-check { display: flex; align-items: flex-start; gap: 0.625rem; margin-bottom: 1.5rem; cursor: pointer; }
+    .modal-card .consent-check input { width: 20px; height: 20px; accent-color: var(--mp-teal); margin-top: 2px; flex-shrink: 0; }
+    .modal-card .consent-check label { font-size: 0.875rem; color: var(--mp-text); line-height: 1.5; cursor: pointer; }
 
     /* Buttons */
-    .btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--mp-dark); color: var(--mp-white); border: none; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; font-weight: 600; cursor: pointer; transition: background 0.2s; text-decoration: none; }
+    .btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--mp-dark); color: var(--mp-white); border: none; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; text-decoration: none; min-height: 44px; }
     .btn-primary:hover { background: var(--mp-dark-hover); }
     .btn-primary.full-width { width: 100%; }
-    .btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: transparent; color: var(--mp-dark); border: 2px solid var(--mp-dark); border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; font-weight: 600; cursor: pointer; transition: background 0.2s; text-decoration: none; }
+    .btn-primary.btn-teal { background: var(--mp-teal); }
+    .btn-primary.btn-teal:hover { background: var(--mp-teal-hover); }
+    .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+    .btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: transparent; color: var(--mp-dark); border: 2px solid var(--mp-dark); border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; text-decoration: none; min-height: 44px; }
     .btn-secondary:hover { background: var(--mp-soft); }
-    .btn-green { background: var(--mp-offer-green); color: var(--mp-white); border: none; }
-    .btn-green:hover { background: #43A047; }
-    .btn-gray { background: #9E9E9E; color: var(--mp-white); border: none; }
-    .btn-gray:hover { background: #757575; }
-    .btn-teal { background: var(--mp-teal); color: var(--mp-white); }
-    .btn-teal:hover { background: var(--mp-teal-hover); }
     .ghost-link { color: var(--mp-teal); text-decoration: none; font-size: 0.9375rem; font-weight: 500; cursor: pointer; border: none; background: none; font-family: 'Inter', sans-serif; }
     .ghost-link:hover { text-decoration: underline; }
 
-    /* Trust strip */
-    .trust-strip { text-align: center; padding: 1.5rem 2rem; color: var(--mp-gray); font-size: 0.875rem; }
-    .trust-strip span { margin: 0 0.75rem; }
+    /* Landing Page Hero */
+    .landing-hero { background: var(--mp-dark); padding: 3.5rem 2rem 4rem; text-align: center; }
+    .landing-hero h1 { color: var(--mp-white); font-size: 2.125rem; font-weight: 700; max-width: 680px; margin: 0 auto 1rem; line-height: 1.3; }
+    .landing-hero p { color: #CCCCCC; font-size: 1.0625rem; max-width: 560px; margin: 0 auto; line-height: 1.7; }
+    .landing-hero .hero-badge { display: inline-block; background: var(--mp-teal); color: var(--mp-white); font-size: 0.8125rem; font-weight: 600; padding: 0.375rem 1rem; border-radius: 100px; margin-bottom: 1.25rem; letter-spacing: 0.5px; }
 
-    /* Choose Path page */
-    .choose-section { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem 3rem; }
-    .page-heading { text-align: center; padding: 3rem 2rem 0.5rem; }
-    .page-heading h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.75rem; }
-    .page-heading p { font-size: 1.125rem; color: var(--mp-gray); max-width: 600px; margin: 0 auto; line-height: 1.6; }
-    .address-bar { background: var(--mp-teal-light); color: var(--mp-dark); text-align: center; padding: 0.75rem 1.5rem; font-size: 0.9375rem; font-weight: 500; }
-    .cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2.5rem; max-width: 720px; margin-left: auto; margin-right: auto; }
-    @media (max-width: 640px) { .cards-grid { grid-template-columns: 1fr; } }
-    .path-card { background: var(--mp-white); border: 1px solid var(--mp-clouds); border-radius: 12px; padding: 2rem 1.5rem 1.5rem; display: flex; flex-direction: column; align-items: flex-start; transition: box-shadow 0.2s; position: relative; cursor: pointer; }
-    .path-card:hover { box-shadow: 0 4px 12px rgba(26,26,46,0.08); }
-    .card-badge { position: absolute; top: 1rem; right: 1rem; background: var(--mp-teal-light); color: var(--mp-teal); font-size: 0.8125rem; font-weight: 500; padding: 0.25rem 0.75rem; border-radius: 100px; }
-    .card-icon { width: 56px; height: 56px; background: var(--mp-teal-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
-    .card-icon svg { width: 28px; height: 28px; fill: none; stroke: var(--mp-teal); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    .path-card h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; line-height: 1.35; padding-right: 4.5rem; }
-    .path-card .card-desc { font-size: 0.9375rem; color: var(--mp-dark); line-height: 1.6; margin-bottom: 0.75rem; flex: 1; }
-    .path-card .card-sub { font-size: 0.8125rem; color: var(--mp-gray); margin-bottom: 1.25rem; }
-    .path-card .btn-primary { margin-top: auto; width: 100%; }
+    /* USP Section */
+    .usp-section { max-width: 800px; margin: -2rem auto 0; padding: 0 1.5rem 2rem; position: relative; z-index: 1; }
+    .usp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .usp-card { background: var(--mp-white); border-radius: 12px; padding: 1.75rem 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); text-align: center; }
+    .usp-card .usp-icon { width: 48px; height: 48px; background: var(--mp-teal-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+    .usp-card .usp-icon svg { width: 24px; height: 24px; stroke: var(--mp-teal); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .usp-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .usp-card p { font-size: 0.875rem; color: var(--mp-gray); line-height: 1.6; }
+    @media (max-width: 640px) { .usp-grid { grid-template-columns: 1fr; } }
 
-    /* AI disclosure */
-    .ai-disclosure { background: var(--mp-teal-light); border-radius: 8px; padding: 1rem 1.25rem; font-size: 0.875rem; line-height: 1.6; margin-bottom: 1.5rem; color: var(--mp-dark); }
-    .inner-page { max-width: 560px; margin: 0 auto; padding: 0 1.5rem 3rem; }
-    .back-link { display: block; text-align: center; margin-top: 1rem; }
+    /* How it works */
+    .how-section { max-width: 640px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+    .how-section h2 { font-size: 1.5rem; font-weight: 700; text-align: center; margin-bottom: 0.5rem; }
+    .how-section .how-sub { text-align: center; font-size: 0.9375rem; color: var(--mp-gray); margin-bottom: 2rem; line-height: 1.6; }
+    .how-steps { display: flex; flex-direction: column; gap: 1.25rem; }
+    .how-step { display: flex; align-items: flex-start; gap: 1rem; }
+    .how-step .step-num { width: 36px; height: 36px; border-radius: 50%; background: var(--mp-teal); color: var(--mp-white); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.875rem; flex-shrink: 0; }
+    .how-step .step-text h4 { font-size: 0.9375rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .how-step .step-text p { font-size: 0.875rem; color: var(--mp-gray); line-height: 1.6; }
 
-    /* Stepper nav (MoneyPark style) */
-    .stepper-nav { display: flex; justify-content: center; align-items: center; padding: 1.25rem 2rem; background: var(--mp-white); border-bottom: 1px solid var(--mp-clouds); gap: 0; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-    .stepper-nav::-webkit-scrollbar { display: none; }
-    .stepper-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1.25rem; border: 2px solid var(--mp-dark); border-radius: 100px; font-size: 0.8125rem; font-weight: 600; color: var(--mp-dark); cursor: pointer; transition: all 0.2s; background: var(--mp-white); position: relative; white-space: nowrap; flex-shrink: 0; }
-    .stepper-item.active { background: var(--mp-dark); color: var(--mp-white); }
-    .stepper-item.done { background: var(--mp-dark); color: var(--mp-white); }
-    .stepper-item .step-num { font-weight: 700; }
-    .stepper-item .check-icon { display: none; }
-    .stepper-item.done .check-icon { display: inline; }
-    .stepper-item.done .step-num { display: none; }
-    .stepper-arrow { width: 20px; height: 20px; fill: none; stroke: var(--mp-sea); stroke-width: 2; margin: 0 0.25rem; flex-shrink: 0; }
+    /* AI Section */
+    .ai-section { max-width: 640px; margin: 0 auto; padding: 0 1.5rem 2.5rem; text-align: center; }
+    .ai-section .ai-cta-card { background: var(--mp-white); border: 2px solid var(--mp-teal); border-radius: 12px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,128,96,0.1); }
+    .ai-section .ai-cta-card h2 { font-size: 1.375rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .ai-section .ai-cta-card p { font-size: 0.9375rem; color: var(--mp-gray); margin-bottom: 1.5rem; line-height: 1.6; }
+    .ai-section .ai-mode-toggle { display: flex; gap: 0.75rem; justify-content: center; margin-bottom: 1.25rem; }
+    .ai-mode-toggle button { padding: 0.5rem 1.25rem; border-radius: 100px; border: 2px solid var(--mp-clouds); background: var(--mp-white); font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: var(--mp-dark); }
+    .ai-mode-toggle button.active { background: var(--mp-teal-light); border-color: var(--mp-teal); color: var(--mp-teal); font-weight: 600; }
+    .ai-mode-toggle button:hover { border-color: var(--mp-teal); }
+    .ai-widget-wrapper { min-height: 120px; margin-top: 1rem; }
+    .ai-disclosure { background: var(--mp-teal-light); border-radius: 8px; padding: 0.875rem 1.25rem; font-size: 0.8125rem; line-height: 1.6; color: var(--mp-text); text-align: left; margin-bottom: 1.25rem; }
 
-    /* Wizard form container */
-    .wizard-container { max-width: 800px; margin: 0 auto; padding: 2rem 2rem 1rem; }
-    .wizard-step { display: none; animation: wizardIn 0.25s ease; }
-    .wizard-step.active { display: block; }
-    @keyframes wizardIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    /* Callback section */
+    .callback-divider { display: flex; align-items: center; gap: 1rem; max-width: 640px; margin: 0 auto; padding: 0 1.5rem; }
+    .callback-divider .line { flex: 1; height: 1px; background: var(--mp-clouds); }
+    .callback-divider span { font-size: 0.875rem; color: var(--mp-sea); font-weight: 500; }
+    .callback-section { max-width: 640px; margin: 0 auto; padding: 1.5rem; }
+    .callback-card { background: var(--mp-white); border-radius: 12px; padding: 2rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .callback-card h3 { font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .callback-card p { font-size: 0.9375rem; color: var(--mp-gray); line-height: 1.6; margin-bottom: 1.25rem; }
+    .callback-card .form-group { margin-bottom: 1rem; }
+    .callback-card .form-group label { display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.375rem; color: var(--mp-dark); }
+    .callback-card .form-group input, .callback-card .form-group select, .callback-card .form-group textarea { width: 100%; padding: 0.75rem 0.875rem; border: 1px solid var(--mp-clouds); border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: var(--mp-dark); background: var(--mp-white); }
+    .callback-card .form-group textarea { resize: vertical; min-height: 80px; }
+    .callback-card .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 520px) { .callback-card .form-row { grid-template-columns: 1fr; } }
 
-    /* Map placeholder */
-    .map-placeholder { width: 100%; height: 200px; background: var(--mp-clouds); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--mp-gray); font-size: 0.875rem; margin-bottom: 1.25rem; border: 1px solid var(--mp-clouds); }
+    /* Debug panel (testing only) */
+    .debug-panel { background: #2d2d2d; border-radius: 12px; padding: 1.5rem; margin: 2rem auto; max-width: 640px; }
+    .debug-panel h3 { color: #aaa; font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+    .debug-panel .form-group { margin-bottom: 0.75rem; }
+    .debug-panel .form-group label { display: block; font-size: 0.8125rem; font-weight: 500; margin-bottom: 0.25rem; color: #999; }
+    .debug-panel .form-group input, .debug-panel .form-group select { width: 100%; padding: 0.5rem 0.75rem; border: 1px solid #444; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.8125rem; color: #eee; background: #1a1a1a; }
+    .debug-panel .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .debug-panel .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; }
+    .debug-toggle { position: fixed; bottom: 1rem; left: 1rem; z-index: 100; background: #333; color: #999; border: 1px solid #555; border-radius: 6px; padding: 0.375rem 0.75rem; font-size: 0.6875rem; font-family: monospace; cursor: pointer; }
+    .debug-toggle:hover { color: #fff; border-color: #888; }
 
-    /* Wizard bottom bar */
-    .wizard-bottom { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; border-top: 1px solid var(--mp-clouds); margin-top: 2rem; }
-    .wizard-bottom .back-btn { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--mp-teal); font-size: 0.9375rem; font-weight: 500; cursor: pointer; border: none; background: none; font-family: inherit; }
-    .wizard-bottom .back-btn:hover { text-decoration: underline; }
-    /* Sticky AI help FAB */
-    .ai-help-fab { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 50; display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: var(--mp-teal); color: var(--mp-white); border: none; border-radius: 100px; font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 600; cursor: pointer; box-shadow: 0 4px 16px rgba(0,128,96,0.3); transition: all 0.2s; }
-    .ai-help-fab:hover { background: var(--mp-teal-hover); box-shadow: 0 6px 24px rgba(0,128,96,0.4); transform: translateY(-1px); }
-    .ai-help-fab svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; }
-    .privacy-line { text-align: center; font-size: 0.8125rem; color: var(--mp-gray); margin-top: 0.75rem; }
-    .privacy-line a { color: var(--mp-teal); }
-
-    /* Offer cards */
-    .offer-header { text-align: center; font-size: 1.125rem; color: var(--mp-gray); margin-bottom: 2rem; }
-    .offer-card { background: var(--mp-white); border: 2px solid var(--mp-clouds); border-radius: 8px; padding: 1.5rem 2rem; margin-bottom: 1.25rem; position: relative; }
-    .offer-card.best { border-color: var(--mp-offer-green); box-shadow: 0 2px 12px rgba(0,128,96,0.08); }
-    .offer-badge { position: absolute; top: -0.75rem; left: 1.5rem; padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
-    .offer-badge.gold { background: #FFF8E1; color: var(--mp-offer-gold); border: 1px solid var(--mp-offer-gold); }
-    .offer-badge.green { background: #E8F5E9; color: var(--mp-offer-green); border: 1px solid var(--mp-offer-green); }
-    .offer-badge.gray { background: #F5F5F5; color: #757575; border: 1px solid #BDBDBD; }
-    .offer-inner { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
-    .offer-logo { font-size: 1.5rem; font-weight: 700; min-width: 120px; color: var(--mp-dark); }
-    .offer-rates { flex: 1; }
-    .offer-rate-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.25rem; font-size: 0.875rem; color: var(--mp-gray); }
-    .offer-rate-row .rate { font-size: 1.5rem; font-weight: 700; color: var(--mp-offer-green); }
-    .offer-cost { text-align: right; min-width: 120px; }
-    .offer-cost .cost-label { font-size: 0.8125rem; color: var(--mp-gray); }
-    .offer-cost .cost-value { font-size: 1.5rem; font-weight: 700; }
-    .offer-cost .cost-currency { font-size: 0.8125rem; color: var(--mp-gray); }
-    .offer-actions { text-align: right; margin-top: 1rem; }
-    .offer-see-more { font-size: 0.8125rem; color: var(--mp-gray); cursor: pointer; margin-top: 0.5rem; text-align: center; }
-    .laurel { position: absolute; top: 0.5rem; left: -0.5rem; right: -0.5rem; display: flex; justify-content: space-between; pointer-events: none; font-size: 2.5rem; color: var(--mp-offer-gold); opacity: 0.6; }
-    .summary-toggle { display: flex; justify-content: space-between; align-items: center; padding: 1rem; border: 1px solid var(--mp-clouds); border-radius: 4px; cursor: pointer; font-size: 0.9375rem; margin-top: 1.5rem; }
-    .edit-data-link { display: block; margin-top: 1rem; font-size: 0.875rem; color: var(--mp-teal); cursor: pointer; }
+    /* Confirmation page */
+    .confirm-section { text-align: center; max-width: 520px; margin: 0 auto; padding: 4rem 1.5rem; }
+    .confirm-icon { width: 80px; height: 80px; background: var(--mp-teal-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; }
+    .confirm-icon svg { width: 40px; height: 40px; stroke: var(--mp-teal); fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .confirm-section h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem; }
+    .confirm-section .confirm-body { font-size: 1.0625rem; color: var(--mp-dark); line-height: 1.7; margin-bottom: 2rem; }
 
     /* Footer */
     .mp-footer { background: var(--mp-white); border-top: 1px solid var(--mp-clouds); padding: 2rem; margin-top: 2rem; }
@@ -184,101 +147,61 @@
     .mp-footer-col a:hover { text-decoration: underline; }
     .mp-footer-bottom { max-width: 800px; margin: 1rem auto 0; padding-top: 1rem; border-top: 1px solid var(--mp-clouds); font-size: 0.75rem; color: var(--mp-sea); }
     .mp-footer-bottom a { color: var(--mp-teal); }
+    .mp-footer .co-brand { font-size: 0.6875rem; color: var(--mp-sea); text-align: center; margin-top: 0.75rem; }
 
-    /* Confirmation */
-    .confirm-section { text-align: center; max-width: 520px; margin: 0 auto; padding: 4rem 1.5rem; }
-    .confirm-icon { width: 80px; height: 80px; background: var(--mp-green-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; }
-    .confirm-icon svg { width: 40px; height: 40px; stroke: var(--mp-green); fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-    .confirm-section h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem; }
-    .confirm-section .confirm-body { font-size: 1.0625rem; color: var(--mp-dark); line-height: 1.7; margin-bottom: 1rem; }
-    .confirm-section .portal-teaser { background: var(--mp-teal-light); border-radius: 8px; padding: 1rem 1.25rem; font-size: 0.9375rem; line-height: 1.6; margin-bottom: 2rem; }
-
-    /* Loading overlay */
-    .loading-overlay { display: none; position: fixed; inset: 0; background: rgba(26,26,46,0.5); z-index: 100; align-items: center; justify-content: center; }
-    .loading-overlay.active { display: flex; }
-    .loading-card { background: var(--mp-white); border-radius: 12px; padding: 3rem; text-align: center; max-width: 360px; }
-    .spinner { width: 48px; height: 48px; border: 4px solid var(--mp-clouds); border-top-color: var(--mp-teal); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 1.5rem; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ===== RESPONSIVE & MOBILE FIXES ===== */
-    .form-group select { appearance: none; -webkit-appearance: none; }
-    .stepper-item:not(.active):not(.done) { opacity: 0.5; cursor: default; }
-    .edit-data-link { border: none; background: none; font-family: inherit; padding: 0; }
-    .edit-data-link:hover { text-decoration: underline; }
-    .btn-primary:focus-visible, .btn-secondary:focus-visible,
-    .ghost-link:focus-visible, .add-link:focus-visible,
-    .stepper-item:focus-visible, .path-card:focus-visible,
-    .edit-data-link:focus-visible { outline: 2px solid var(--mp-teal); outline-offset: 2px; }
-    .btn-primary, .btn-secondary { min-height: 44px; }
-    .ghost-link, .add-link { min-height: 44px; display: inline-flex; align-items: center; }
-    .wizard-bottom .back-btn { min-height: 44px; }
-
+    /* Responsive */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 1.75rem; }
-      .hero p { font-size: 1rem; }
-      .page-heading h1 { font-size: 1.625rem; }
-      .form-group input, .form-group select { font-size: 1rem; }
+      .landing-hero h1 { font-size: 1.625rem; }
+      .landing-hero p { font-size: 1rem; }
       .mp-footer-inner { flex-direction: column; gap: 1.5rem; }
-      .mp-footer-inner .header-brand { margin-left: 0; }
     }
-
-    @media (max-width: 640px) {
-      .stepper-nav { justify-content: flex-start; padding: 0.75rem 1rem; }
-      .stepper-item { font-size: 0.75rem; padding: 0.4rem 0.75rem; }
-      .stepper-arrow { width: 16px; height: 16px; margin: 0 0.125rem; }
-      .offer-inner { flex-direction: column; align-items: flex-start; gap: 1rem; }
-      .offer-cost { text-align: left; min-width: unset; }
-      .offer-rates { width: 100%; }
-      .offer-logo { min-width: unset; }
-      .offer-card { padding-top: 2rem; }
-      .wizard-container { padding: 1.5rem 1rem 1rem; }
-      .wizard-step { padding-bottom: 4rem; }
-      .hero { padding: 2.5rem 1.25rem 3rem; }
-      .hero h1 { font-size: 1.5rem; }
-      .form-section { padding: 0 1rem 2rem; }
-    }
-
     @media (max-width: 520px) {
       .header { padding: 0.75rem 1rem; }
       .header-phone { font-size: 0; gap: 0; min-height: 44px; min-width: 44px; justify-content: center; border-radius: 8px; }
-      .header-phone:hover { background: var(--mp-soft); }
       .header-phone .phone-icon { width: 22px; height: 22px; }
       .header-helvetia { display: none; }
-      .header-user { font-size: 0; gap: 0; }
-      .header-user .user-avatar { width: 36px; height: 36px; font-size: 0.8125rem; }
-      .hero p { font-size: 0.9375rem; }
-      .form-card { padding: 1.5rem; }
-      .page-heading { padding: 2rem 1rem 0.5rem; }
-      .page-heading h1 { font-size: 1.5rem; }
-      .page-heading p { font-size: 1rem; }
-      .choose-section { padding: 0 1rem 2rem; }
-      .path-card h3 { padding-right: 0; font-size: 1.125rem; }
-      .card-badge { position: static; display: inline-block; margin-bottom: 0.75rem; }
-      .wizard-bottom { flex-wrap: wrap; gap: 0.75rem; }
-      .wizard-bottom .btn-primary { width: 100%; order: -1; }
-      .inner-page { padding: 0 1rem 2rem; }
+      .landing-hero { padding: 2.5rem 1.25rem 3rem; }
+      .landing-hero h1 { font-size: 1.375rem; }
+      .modal-card { padding: 2rem 1.5rem; }
+      .usp-section { padding: 0 1rem 1.5rem; }
+      .how-section { padding: 2rem 1rem; }
+      .ai-section { padding: 0 1rem 2rem; }
+      .callback-section { padding: 1rem; }
       .confirm-section { padding: 3rem 1rem; }
-      .confirm-section h1 { font-size: 1.375rem; }
-    
-    }
-
-    @media (max-width: 400px) {
-      .hero h1 { font-size: 1.25rem; }
-      .hero p { font-size: 0.875rem; }
-      .page-heading h1 { font-size: 1.25rem; }
-      .stepper-item { font-size: 0.6875rem; padding: 0.35rem 0.5rem; }
-      .form-group input, .form-group select { padding: 0.625rem 0.75rem; }
-      .btn-primary, .btn-secondary { font-size: 0.875rem; padding: 0.625rem 1rem; min-height: 44px; }
-      .offer-card { padding: 1rem 1.25rem; padding-top: 2rem; }
-      .ai-help-fab { padding: 0.625rem 1rem; font-size: 0.8125rem; bottom: 1rem; right: 1rem; }
-      .wizard-container { padding: 1.25rem 0.75rem 1rem; }
+      .debug-panel { margin: 2rem 1rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- ================ PAGE 1: WELCOME ================ -->
-<div class="page active" id="page-welcome">
+<!-- ==================== CONSENT MODAL ==================== -->
+<div class="modal-overlay" id="consent-modal">
+  <div class="modal-card">
+    <div class="modal-logo">
+      <span style="font-size:1.25rem;font-weight:700;color:var(--mp-dark);letter-spacing:2px;">MONEY<svg style="width:18px;height:18px;fill:var(--mp-dark);vertical-align:middle;margin:0 2px;" viewBox="0 0 24 24"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/></svg>PARK</span>
+      <span style="font-size:0.625rem;color:var(--mp-gray);margin-left:0.5rem;">a company of <strong>helvetia</strong></span>
+    </div>
+    <h2>Before we begin</h2>
+    <p>This service is provided by <strong>PriceHubble AG</strong> on behalf of <strong>MoneyPark</strong>. To offer you a personalized experience, we process the following data:</p>
+    <ul>
+      <li>Your name and contact information</li>
+      <li>Property and mortgage details shared during the conversation</li>
+      <li>Conversation content (voice or text) with the AI assistant</li>
+    </ul>
+    <div class="legal-box">
+      Your data is processed by PriceHubble AG as a data processor on behalf of MoneyPark (Helvetia Group), in compliance with <strong>GDPR</strong> and Swiss data protection law (<strong>nDSG</strong>). Your information is used exclusively for mortgage advisory services and will be shared with your MoneyPark advisor. You may request deletion at any time.<br><br>
+      <a href="#">Privacy policy</a> &middot; <a href="#">Terms of use</a> &middot; <a href="#">Data processing agreement</a>
+    </div>
+    <div class="consent-check">
+      <input type="checkbox" id="consent-checkbox">
+      <label for="consent-checkbox">I understand and agree that my data will be processed by PriceHubble on behalf of MoneyPark for the purpose of mortgage advisory services.</label>
+    </div>
+    <button class="btn-primary btn-teal full-width" id="consent-accept-btn" disabled onclick="acceptConsent()">Continue to MoneyPark AI advisor</button>
+  </div>
+</div>
+
+<!-- ==================== PAGE: AI LANDING ==================== -->
+<div class="page" id="page-landing">
   <header class="header">
     <div class="header-brand">
       <div class="header-logo">MONEY<svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/></svg>PARK</div>
@@ -286,294 +209,153 @@
     </div>
     <div class="header-right">
       <a href="tel:+41442007597" class="header-phone"><svg class="phone-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+41 44 200 75 97</a>
-      <div class="header-user"><div class="user-avatar">CA</div>Charles Alzon</div>
     </div>
   </header>
-  <section class="hero">
-    <h1>Your mortgage — simple, transparent, and obligation-free</h1>
-    <p>Enter the address of your property and find out its estimated market value. Then choose how you'd like to proceed.</p>
+
+  <!-- Hero -->
+  <section class="landing-hero">
+    <span class="hero-badge">AI-powered &middot; Available 24/7</span>
+    <h1 id="hero-title">Prepare your mortgage renewal with Anna, your virtual assistant</h1>
+    <p id="hero-subtitle">Anna collects the information your advisor needs — so your meeting is shorter, more productive, and your file is processed faster.</p>
   </section>
-  <div class="form-section">
-    <div class="form-card">
-      <div class="form-group">
-        <label>Property address <span class="optional">(optional)</span></label>
-        <input type="text" id="address-input" placeholder="e.g. Bahnhofstrasse 12, 8001 Zürich">
-      </div>
-      <div class="form-group">
-        <label>What are you interested in?</label>
-        <div class="select-wrapper">
-          <select id="interest-select">
-            <option value="" disabled selected>Please select</option>
-            <option value="refinancing">Mortgage refinancing</option>
-            <option value="purchase">Property purchase</option>
-            <option value="renovation">Renovation financing</option>
-            <option value="general">General advice</option>
-          </select>
-        </div>
-      </div>
-      <button class="btn-primary full-width" onclick="goToPage('choose-path')">Continue →</button>
-    </div>
-  </div>
-  <div class="trust-strip">Free &amp; no obligation <span>·</span> Over 100 lending partners <span>·</span> GDPR-compliant</div>
-</div>
 
-<!-- ================ PAGE 2: CHOOSE YOUR PATH ================ -->
-<div class="page" id="page-choose-path">
-  <header class="header">
-    <div class="header-brand"><div class="header-logo">MONEY<svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/></svg>PARK</div><div class="header-helvetia">a company of<br><strong>helvetia</strong></div></div>
-    <div class="header-right"><a href="tel:+41442007597" class="header-phone"><svg class="phone-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+41 44 200 75 97</a><div class="header-user"><div class="user-avatar">CA</div>Charles Alzon</div></div>
-  </header>
-  <div id="address-bar-container"></div>
-  <div class="page-heading">
-    <h1>How would you like to be advised?</h1>
-    <p>Choose the option that suits you best — all options are free and without obligation.</p>
-  </div>
-  <div class="choose-section">
-    <div class="cards-grid">
-      <div class="path-card" onclick="goToPage('self-onboard')">
-        <span class="card-badge">Quick &amp; easy</span>
-        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-        <h3>Request a mortgage offer yourself</h3>
-        <p class="card-desc">Complete a quick online form and receive the best mortgage comparison from over 100 lending partners.</p>
-        <p class="card-sub">No call needed — get started right away</p>
-        <button class="btn-primary" onclick="event.stopPropagation(); goToPage('self-onboard')">Request offer →</button>
+  <!-- USPs -->
+  <section class="usp-section">
+    <div class="usp-grid">
+      <div class="usp-card">
+        <div class="usp-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3>Available 24/7</h3>
+        <p>Start anytime — mornings, evenings, weekends. No appointment needed.</p>
       </div>
-      <div class="path-card" onclick="goToPage('ai-assistant')">
-        <span class="card-badge">AI-powered</span>
-        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div>
-        <h3>Speak with a virtual assistant</h3>
-        <p class="card-desc">Our AI assistant answers your mortgage questions — by voice, right in your browser. Available immediately.</p>
-        <p class="card-sub">AI-powered · No obligation · Instant</p>
-        <button class="btn-primary" onclick="event.stopPropagation(); goToPage('ai-assistant')">Start conversation →</button>
+      <div class="usp-card">
+        <div class="usp-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <h3>Fast-lane experience</h3>
+        <p>Skip the queue. Your file is pre-filled and ready when your advisor calls.</p>
+      </div>
+      <div class="usp-card">
+        <div class="usp-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <h3>No repeating yourself</h3>
+        <p>Everything you share goes directly to your advisor. One conversation, zero duplicates.</p>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<!-- ================ PAGE 3A: SELF-ONBOARD (4-step MoneyPark flow) ================ -->
-<div class="page" id="page-self-onboard">
-  <header class="header">
-    <div class="header-brand"><div class="header-logo">MONEY<svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/></svg>PARK</div><div class="header-helvetia">a company of<br><strong>helvetia</strong></div></div>
-    <div class="header-right"><a href="tel:+41442007597" class="header-phone"><svg class="phone-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+41 44 200 75 97</a><div class="header-user"><div class="user-avatar">CA</div>Charles Alzon</div></div>
-  </header>
-
-  <!-- Stepper -->
-  <div class="stepper-nav" id="stepper-nav"></div>
-
-  <div class="wizard-container">
-    <!-- STEP 1: My property -->
-    <div class="wizard-step active" data-step="0">
-      <div class="form-row form-row-zip">
-        <div class="form-group">
-          <label>ZIP code <span class="required">*</span></label>
-          <div class="select-wrapper"><select><option>5400 Baden</option><option>8001 Zürich</option><option>3000 Bern</option><option>1200 Genève</option><option>6900 Lugano</option></select></div>
-        </div>
-        <div class="form-group"><label>Address <span class="required">*</span></label><input type="text" value="wiesenstrasse"></div>
-        <div class="form-group"><label>Nr.</label><input type="text" value="1"></div>
-      </div>
-      <div style="text-align:right; margin-bottom:1rem;"><button class="btn-teal btn-primary" style="width:auto;" onclick="void(0)">Search</button></div>
-      <div class="map-placeholder">Map — Karte / Satellit</div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Property type <span class="required">*</span></label>
-          <div class="select-wrapper"><select><option>End-terrace house</option><option>Detached house</option><option>Semi-detached house</option><option>Condominium</option><option>Apartment building</option></select></div>
-        </div>
-        <div class="form-group">
-          <label>Class of property <span class="required">*</span></label>
-          <div class="select-wrapper"><select><option>Main Residence</option><option>Investment property</option><option>Holiday home</option></select></div>
+  <!-- How it works -->
+  <section class="how-section">
+    <h2>How it works</h2>
+    <p class="how-sub">A simple, structured conversation that prepares everything your advisor needs.</p>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-num">1</div>
+        <div class="step-text">
+          <h4>Personal situation</h4>
+          <p>Anna asks about any changes since your last mortgage — employment, income, family, renovations.</p>
         </div>
       </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Property value <span class="required">*</span> <span class="info-icon">i</span></label>
-          <input type="text" value="CHF 1'000'000">
-        </div>
-        <div class="form-group">
-          <label>Start of refinancing <span class="required">*</span> <span class="info-icon">i</span></label>
-          <input type="text" value="04.03.2027">
+      <div class="how-step">
+        <div class="step-num">2</div>
+        <div class="step-text">
+          <h4>Your preferences</h4>
+          <p>What matters to you: fixed vs. SARON rate, tranche structure, budget priorities.</p>
         </div>
       </div>
-      <h3 class="form-section-title">Current mortgage</h3>
-      <div class="form-group">
-        <label>Current mortgage provider <span class="required">*</span></label>
-        <div class="select-wrapper"><select><option>AXA Romandie</option><option>UBS</option><option>Credit Suisse</option><option>Raiffeisen</option><option>Zurich Insurance</option><option>PostFinance</option></select></div>
+      <div class="how-step">
+        <div class="step-num">3</div>
+        <div class="step-text">
+          <h4>Next steps</h4>
+          <p>Anna proposes available time slots for a short meeting with your personal advisor.</p>
+        </div>
       </div>
-      <div style="text-align:right;"><button class="add-link" onclick="void(0)">Add tranche +</button></div>
-      <div class="wizard-bottom">
-        <button class="back-btn" onclick="goToPage('choose-path')">← Back</button>
-        <span></span>
-        <button class="btn-primary" onclick="wizardNext(0)">Save &amp; continue</button>
+      <div class="how-step">
+        <div class="step-num">4</div>
+        <div class="step-text">
+          <h4>Your advisor takes over</h4>
+          <p>With your file prepared, your advisor can go straight to finding the best rate from 150+ partners.</p>
+        </div>
       </div>
-      <p class="privacy-line">By continuing, I accept the <a href="#">privacy policy</a> of Helvetia</p>
     </div>
+  </section>
 
-    <!-- STEP 2: My financial situation -->
-    <div class="wizard-step" data-step="1">
-      <div style="text-align:center; margin-bottom:1.5rem;"><span class="btn-teal btn-primary" style="padding:0.35rem 1rem; font-size:0.8125rem;">Customer 1</span></div>
-      <h3 class="form-section-title" style="border-top:none; margin-top:0;">General information</h3>
-      <div class="form-group">
-        <label>Gender <span class="required">*</span></label>
-        <div class="select-wrapper"><select><option>Mr.</option><option>Mrs.</option></select></div>
+  <!-- AI Widget Section -->
+  <section class="ai-section">
+    <div class="ai-cta-card">
+      <h2>Ready? Start your conversation</h2>
+      <p>Choose how you'd like to interact with Anna. Both options are free and take 5–10 minutes.</p>
+      <div class="ai-disclosure">
+        <strong>Note:</strong> You are speaking with an AI-powered assistant, not a human. Your data is protected under GDPR and Swiss data protection law, and will be shared exclusively with your MoneyPark advisor.
       </div>
-      <div class="form-row">
-        <div class="form-group"><label>First name <span class="required">*</span></label><input type="text" value="Charles"></div>
-        <div class="form-group"><label>Last name <span class="required">*</span></label><input type="text" value="Alzon"></div>
+      <div class="ai-mode-toggle">
+        <button class="active" onclick="setAiMode('voice')" id="mode-voice">Voice</button>
+        <button onclick="setAiMode('text')" id="mode-text">Text chat</button>
       </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Date of birth <span class="required">*</span></label>
-          <div style="display:flex; gap:0.5rem;">
-            <input type="text" value="15" style="width:60px; flex-shrink:0;">
-            <div class="select-wrapper" style="flex:1;"><select><option>Mar</option><option>Jan</option><option>Feb</option><option>Apr</option></select></div>
-            <input type="text" value="1990" style="width:70px; flex-shrink:0;">
-          </div>
-        </div>
-        <div class="form-group"><label>US Person</label><div class="checkbox-row" style="margin-top:0.25rem;"><input type="checkbox"> <span class="info-icon">i</span></div></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Nationality <span class="required">*</span></label>
-          <div class="select-wrapper"><select>
-            <option>—</option><option selected>Switzerland</option><option>Germany</option><option>Italy</option><option>France</option>
-          </select></div>
-        </div>
-        <div class="form-group">
-          <label>Employment status <span class="required">*</span></label>
-          <div class="select-wrapper"><select><option>Employed</option><option>Self-employed</option><option>Retired</option><option>Student</option></select></div>
-        </div>
-      </div>
-      <h3 class="form-section-title">Home address</h3>
-      <div class="checkbox-row"><input type="checkbox" checked> Same as object address</div>
-      <p style="font-size:0.9375rem; color:var(--mp-gray); margin-bottom:1rem;">☑ wiesenstrasse 1, 5400 Baden</p>
-      <h3 class="form-section-title">Income</h3>
-      <div class="form-row">
-        <div class="form-group"><label>Annual gross income <span class="required">*</span></label><input type="text" value="CHF 200'000"></div>
-        <div class="form-group"><label>Bonus <span class="info-icon">i</span></label><input type="text" placeholder=""></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Further income <span class="info-icon">i</span></label><input type="text" placeholder=""></div>
-        <div class="form-group"><label>Further financial commitments <span class="info-icon">i</span></label><input type="text" placeholder=""></div>
-      </div>
-      <div class="form-group"><label>Pension fund + AHV <span class="info-icon">i</span></label><input type="text" placeholder=""></div>
-      <h3 class="form-section-title">Own funds</h3>
-      <div class="checkbox-row"><input type="checkbox"> Do you want to pledge assets? <span class="info-icon">i</span></div>
-      <div class="checkbox-row"><input type="checkbox"> Do you have additional objects? <span class="info-icon">i</span></div>
-      <h3 class="form-section-title">Second borrower</h3>
-      <div class="checkbox-row"><input type="checkbox"> Do you want provide additional borrower? <span class="info-icon">i</span></div>
-      <div style="text-align:center; margin-top:1.5rem;"><span class="btn-teal btn-primary" style="padding:0.35rem 1rem; font-size:0.8125rem;">Customer 1</span></div>
-      <div class="wizard-bottom">
-        <button class="back-btn" onclick="wizardBack()">← Back</button>
-        <span></span>
-        <button class="btn-primary" onclick="wizardNext(1)">Save &amp; continue</button>
-      </div>
-      <p class="privacy-line">By continuing, I accept the <a href="#">privacy policy</a> of Helvetia</p>
+      <button class="btn-primary btn-teal full-width" id="start-ai-btn" onclick="launchAgent()">
+        <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+        Start conversation with Anna
+      </button>
+      <div id="ai-widget-container" class="ai-widget-wrapper"></div>
     </div>
+  </section>
 
-    <!-- STEP 3: My refinancing -->
-    <div class="wizard-step" data-step="2">
-      <div style="display:flex; align-items:baseline; gap:1rem; margin-bottom:0.5rem;">
-        <h2 style="font-size:1.5rem; font-weight:700;">Mortgage amount</h2>
-        <span style="color:var(--mp-gray); font-size:1rem;">CHF 0 <span class="info-icon">i</span></span>
+  <!-- Callback alternative -->
+  <div class="callback-divider"><div class="line"></div><span>or</span><div class="line"></div></div>
+  <section class="callback-section">
+    <div class="callback-card">
+      <h3>Prefer a human? Request a callback</h3>
+      <p>Fill in your details and a MoneyPark advisor will contact you.</p>
+      <div class="callback-card form-row">
+        <div class="form-group"><label>Full name</label><input type="text" id="cb-name" placeholder="Hans Müller"></div>
+        <div class="form-group"><label>Phone number</label><input type="tel" id="cb-phone" placeholder="+41 79 123 45 67"></div>
       </div>
-      <p style="font-size:0.9375rem; color:var(--mp-gray); margin-bottom:1.5rem;">Tranche 1 <span class="info-icon">i</span> <span style="display:inline-block; width:100%; height:2px; background:var(--mp-teal); margin-top:0.25rem;"></span></p>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Type <span class="required">*</span></label>
-          <div class="select-wrapper"><select><option>Saron</option><option>Fixed 5 years</option><option>Fixed 10 years</option><option>Fixed 15 years</option></select></div>
-        </div>
-        <div class="form-group">
-          <label>Period <span class="required">*</span></label>
-          <div class="select-wrapper"><select><option>6</option><option>3</option><option>12</option></select></div>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Duration <span class="required">*</span></label>
-          <div class="select-wrapper"><select><option>10</option><option>5</option><option>7</option><option>15</option><option>20</option></select></div>
-        </div>
-        <div class="form-group">
-          <label>Amount <span class="required">*</span></label>
-          <input type="text" value="CHF 800'000">
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Date of financing <span class="required">*</span></label>
-        <input type="text" value="18.05.2026">
-      </div>
-      <div style="text-align:right;"><button class="add-link" onclick="void(0)">Add tranche +</button></div>
-      <div class="wizard-bottom">
-        <button class="back-btn" onclick="wizardBack()">← Back</button>
-        <span></span>
-        <button class="btn-primary" onclick="wizardNext(2)">Save &amp; continue</button>
-      </div>
-      <p class="privacy-line">By continuing, I accept the <a href="#">privacy policy</a> of Helvetia</p>
+      <div class="form-group"><label>Preferred time</label><input type="text" id="cb-time" placeholder="e.g. Tuesday morning, any afternoon"></div>
+      <div class="form-group"><label>Anything else? <span style="color:var(--mp-gray);font-weight:400;">(optional)</span></label><textarea id="cb-notes" placeholder="Questions, preferences, or context for the advisor..."></textarea></div>
+      <button class="btn-primary full-width" onclick="submitCallback()">Request callback &rarr;</button>
     </div>
+  </section>
 
-    <!-- STEP 4: My offer -->
-    <div class="wizard-step" data-step="3">
-      <p class="offer-header">Based on our calculations, here is the best provider for your optimal mortgage:</p>
-
-      <div class="offer-card best" style="overflow:visible;">
-        <div class="laurel"><span>🏆</span><span>🏆</span></div>
-        <div class="offer-inner">
-          <div class="offer-logo" style="color:#003781;">Allianz <span style="font-size:2rem;">&#9765;</span></div>
-          <div class="offer-rates">
-            <div class="offer-rate-row"><span>Your 1st tranche</span> <span class="rate">1.05<small>%</small></span></div>
-            <div class="offer-rate-row"><span>Your 2nd tranche</span> <span class="rate">1.05<small>%</small></span></div>
-            <div class="offer-see-more">See more ◂</div>
-          </div>
-          <div class="offer-cost">
-            <div class="cost-label">Monthly costs</div>
-            <div><span class="cost-currency">CHF</span> <span class="cost-value">1'999</span></div>
-          </div>
-        </div>
-        <div class="offer-actions"><button class="btn-secondary" onclick="goToPage('callback-confirmed-self')">Speak to an Advisor</button></div>
+  <!-- Debug panel (for internal testing) -->
+  <div class="debug-panel" id="debug-panel" style="display:none;">
+    <h3>Agent context variables — testing</h3>
+    <div class="form-row">
+      <div class="form-group"><label>Customer name</label><input type="text" id="dv-name" value="Charles Alzon"></div>
+      <div class="form-group"><label>Property address</label><input type="text" id="dv-property_address" value="Bahnhofstrasse 12, 8001 Zürich"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Interest</label>
+        <select id="dv-interest">
+          <option value="Mortgage refinancing" selected>Mortgage refinancing</option>
+          <option value="Property purchase">Property purchase</option>
+          <option value="Renovation financing">Renovation financing</option>
+          <option value="General advice">General advice</option>
+        </select>
       </div>
-
-      <div class="offer-card" style="margin-top:2rem; overflow:visible;">
-        <div class="offer-badge green">Best Online Offer</div>
-        <div class="offer-inner">
-          <div class="offer-logo" style="color:#00205B; font-family:serif; font-weight:900; letter-spacing:1px;">RAIFFEISEN</div>
-          <div class="offer-rates">
-            <div class="offer-rate-row"><span>Your 1st tranche</span> <span class="rate">1.05<small>%</small></span></div>
-            <div class="offer-rate-row"><span>Your 2nd tranche</span> <span class="rate">1.05<small>%</small></span></div>
-            <div class="offer-see-more">See more ◂</div>
-          </div>
-          <div class="offer-cost">
-            <div class="cost-label">Monthly costs</div>
-            <div><span class="cost-currency">CHF</span> <span class="cost-value">1'999</span></div>
-          </div>
-        </div>
-        <div class="summary-toggle">Check my summary <span class="info-icon">i</span> <span style="margin-left:auto;">◂</span></div>
-        <div class="offer-actions" style="margin-top:0.75rem;"><button class="btn-primary btn-green" onclick="goToPage('callback-confirmed-self')">Continue Online</button></div>
+      <div class="form-group"><label>Language</label>
+        <select id="dv-language_spoken">
+          <option value="en" selected>English</option>
+          <option value="de">Deutsch</option>
+          <option value="fr">Français</option>
+          <option value="it">Italiano</option>
+        </select>
       </div>
-
-      <div class="offer-card" style="margin-top:2rem; overflow:visible;">
-        <div class="offer-badge gray">Best Rate Amongst non-partners</div>
-        <div class="offer-inner">
-          <div class="offer-logo" style="color:#003DA5;">RE/MAX</div>
-          <div class="offer-rates">
-            <div class="offer-rate-row"><span>Your 1st tranche</span> <span class="rate">1.05<small>%</small></span></div>
-            <div class="offer-rate-row"><span>Your 2nd tranche</span> <span class="rate">1.05<small>%</small></span></div>
-            <div class="offer-see-more">See more ◂</div>
-          </div>
-          <div class="offer-cost">
-            <div class="cost-label">Monthly costs</div>
-            <div><span class="cost-currency">CHF</span> <span class="cost-value">1'999</span></div>
-          </div>
-        </div>
-        <div class="offer-actions" style="margin-top:0.75rem;"><button class="btn-primary btn-gray">Check Website</button></div>
+    </div>
+    <div class="form-row-3">
+      <div class="form-group"><label>Months to expiry</label><input type="number" id="dv-months_to_expiry" value="11"></div>
+      <div class="form-group"><label>Mortgage year</label><input type="number" id="dv-mortgage_year" value="2016"></div>
+      <div class="form-group"><label>Current rate (%)</label><input type="text" id="dv-current_rate" value="1.45"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Advisor name</label><input type="text" id="dv-advisor_name" value="Stefan Heitmann"></div>
+      <div class="form-group"><label>Brand name</label><input type="text" id="dv-brand_name" value="MoneyPark"></div>
+    </div>
+    <div class="form-row-3">
+      <div class="form-group"><label>Prior contact</label>
+        <select id="dv-PRIOR_CONTACT"><option value="false" selected>No</option><option value="true">Yes</option></select>
       </div>
-
-      <button class="edit-data-link" onclick="wizardGo(0)">← Edit Data</button>
+      <div class="form-group"><label>Lead ID</label><input type="text" id="dv-leadId" value="demo-lead-001"></div>
+      <div class="form-group"><label>Agent ID</label><input type="text" id="dv-agent_id" value="agent_0301khnwgrw0fkpbhf4am3f8npdx" style="font-size:0.7rem;"></div>
     </div>
   </div>
 
-  <button class="ai-help-fab" onclick="goToPage('ai-assistant')">
-    <svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
-    Need help? Talk to AI
-  </button>
-
+  <!-- Footer -->
   <div class="mp-footer">
     <div class="mp-footer-inner">
       <div class="mp-footer-col"><strong>Jobs &amp; careers</strong><a href="#">Careers at MoneyPark</a><a href="#">Careers at Helvetia</a></div>
@@ -584,182 +366,122 @@
         <div class="header-helvetia">a company of<br><strong>helvetia</strong></div>
       </div>
     </div>
-    <div class="mp-footer-bottom">© MoneyPark AG · Zürichstrasse 130 · CH-8600 Dübendorf · +41 58 280 10 00<br><a href="#">Imprint</a> · <a href="#">Legal info</a> · <a href="#">Privacy policy</a></div>
+    <div class="mp-footer-bottom">&copy; MoneyPark AG &middot; Z&uuml;richstrasse 130 &middot; CH-8600 D&uuml;bendorf &middot; +41 58 280 10 00<br><a href="#">Imprint</a> &middot; <a href="#">Legal info</a> &middot; <a href="#">Privacy policy</a></div>
+    <p class="co-brand" style="font-size:0.6875rem;color:var(--mp-sea);text-align:center;margin-top:0.75rem;">In cooperation with PriceHubble</p>
   </div>
 </div>
 
-<!-- ================ PAGE 3B: AI ASSISTANT ================ -->
-<div class="page" id="page-ai-assistant">
+<!-- ==================== PAGE: CALLBACK CONFIRMED ==================== -->
+<div class="page" id="page-callback-confirmed">
   <header class="header">
     <div class="header-brand"><div class="header-logo">MONEY<svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/></svg>PARK</div><div class="header-helvetia">a company of<br><strong>helvetia</strong></div></div>
-    <div class="header-right"><a href="tel:+41442007597" class="header-phone"><svg class="phone-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+41 44 200 75 97</a><div class="header-user"><div class="user-avatar">CA</div>Charles Alzon</div></div>
-  </header>
-  <div class="inner-page" style="text-align:center; max-width:640px;">
-    <div class="ai-disclosure" style="text-align:left; margin-top:2rem;">
-      <strong>Note:</strong> You are speaking with an AI-powered assistant, not a human. Your data is protected under GDPR and Swiss data protection law.
-    </div>
-    <p style="font-size:0.9375rem; color:var(--mp-gray); margin-bottom:1.5rem; text-align:left;">Ask questions like: <em>"Where do I get my salary slip?"</em>, <em>"What is a SARON mortgage?"</em>, or <em>"Can you help me understand my options?"</em></p>
-
-    <!-- Editable dynamic variables -->
-    <div id="ai-vars-form" style="text-align:left; margin-bottom:1.5rem;">
-      <h3 style="font-size:0.9375rem; font-weight:600; margin-bottom:1rem; color:var(--mp-dark);">Agent context variables <span style="font-weight:400; color:var(--mp-gray); font-size:0.8125rem;">— adjust before starting</span></h3>
-      <div class="form-row">
-        <div class="form-group"><label>Customer name</label><input type="text" id="dv-name" value="Charles Alzon"></div>
-        <div class="form-group"><label>Property address</label><input type="text" id="dv-property_address" value="Bahnhofstrasse 12, 8001 Zürich"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Interest</label>
-          <div class="select-wrapper"><select id="dv-interest">
-            <option value="Mortgage refinancing" selected>Mortgage refinancing</option>
-            <option value="Property purchase">Property purchase</option>
-            <option value="Renovation financing">Renovation financing</option>
-            <option value="General advice">General advice</option>
-          </select></div>
-        </div>
-        <div class="form-group">
-          <label>Language</label>
-          <div class="select-wrapper"><select id="dv-language_spoken">
-            <option value="en" selected>English</option>
-            <option value="de">Deutsch</option>
-            <option value="fr">Français</option>
-            <option value="it">Italiano</option>
-          </select></div>
-        </div>
-      </div>
-      <div class="form-row-3">
-        <div class="form-group"><label>Months to expiry</label><input type="number" id="dv-months_to_expiry" value="11"></div>
-        <div class="form-group"><label>Mortgage year</label><input type="number" id="dv-mortgage_year" value="2016"></div>
-        <div class="form-group"><label>Current rate (%)</label><input type="text" id="dv-current_rate" value="1.45"></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label>Advisor name</label><input type="text" id="dv-advisor_name" value="Stefan Heitmann"></div>
-        <div class="form-group"><label>Brand name</label><input type="text" id="dv-brand_name" value="MoneyPark"></div>
-      </div>
-      <div class="form-row-3">
-        <div class="form-group">
-          <label>Prior contact</label>
-          <div class="select-wrapper"><select id="dv-PRIOR_CONTACT">
-            <option value="false" selected>No</option>
-            <option value="true">Yes</option>
-          </select></div>
-        </div>
-        <div class="form-group"><label>Lead ID</label><input type="text" id="dv-leadId" value="demo-lead-001"></div>
-        <div class="form-group"><label>Agent ID</label><input type="text" id="dv-agent_id" value="agent_0301khnwgrw0fkpbhf4am3f8npdx" style="font-size:0.75rem;"></div>
-      </div>
-    </div>
-
-    <button class="btn-primary full-width btn-teal" onclick="launchAgent()" id="launch-agent-btn" style="margin-bottom:0.5rem;">
-      <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
-      Start AI conversation
-    </button>
-
-    <div id="ai-widget-container" style="margin:1.5rem 0;"></div>
-
-    <div class="back-link" style="margin-top:1rem;"><button class="ghost-link" onclick="goToPage('self-onboard')">← Return to online flow</button></div>
-    <div class="back-link" style="margin-top:0.5rem;"><button class="ghost-link" onclick="goToPage('choose-path')" style="font-size:0.8125rem; color:var(--mp-gray);">← Back to selection</button></div>
-  </div>
-</div>
-
-<!-- ================ PAGE 4: CALLBACK CONFIRMED (SELF) ================ -->
-<div class="page" id="page-callback-confirmed-self">
-  <header class="header">
-    <div class="header-brand"><div class="header-logo">MONEY<svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/></svg>PARK</div><div class="header-helvetia">a company of<br><strong>helvetia</strong></div></div>
-    <div class="header-right"><a href="tel:+41442007597" class="header-phone"><svg class="phone-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+41 44 200 75 97</a><div class="header-user"><div class="user-avatar">CA</div>Charles Alzon</div></div>
+    <div class="header-right"><a href="tel:+41442007597" class="header-phone"><svg class="phone-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+41 44 200 75 97</a></div>
   </header>
   <div class="confirm-section">
     <div class="confirm-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-    <h1>Thank you — your offer is being prepared!</h1>
-    <p class="confirm-body">We've received your details. A MoneyPark advisor will prepare an individual mortgage offer for you based on a comparison of over 100 lending partners and get in touch shortly.</p>
-    <div class="portal-teaser">Bonus: You'll soon receive your personal property cockpit by email — with market value, comparison data, and neighbourhood insights.</div>
-    <a href="https://www.moneypark.ch/ch/mp/en/home.html" class="btn-secondary">Back to MoneyPark website →</a>
+    <h1 id="confirm-title">Thank you — we'll be in touch!</h1>
+    <p class="confirm-body" id="confirm-body">A MoneyPark advisor will call you at your preferred time. In the meantime, you'll receive your personal property cockpit by email.</p>
+    <a href="https://www.moneypark.ch/ch/mp/en/home.html" class="btn-secondary">Back to MoneyPark website &rarr;</a>
   </div>
 </div>
 
-<!-- ================ PAGE 4: CALLBACK CONFIRMED (AI) ================ -->
-<div class="page" id="page-callback-confirmed-ai">
-  <header class="header">
-    <div class="header-brand"><div class="header-logo">MONEY<svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/></svg>PARK</div><div class="header-helvetia">a company of<br><strong>helvetia</strong></div></div>
-    <div class="header-right"><a href="tel:+41442007597" class="header-phone"><svg class="phone-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+41 44 200 75 97</a><div class="header-user"><div class="user-avatar">CA</div>Charles Alzon</div></div>
-  </header>
-  <div class="confirm-section">
-    <div class="confirm-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-    <h1>Thank you — we'll be in touch!</h1>
-    <p class="confirm-body">Our virtual assistant will call you shortly. Please keep your phone handy.</p>
-    <div class="portal-teaser">Bonus: You'll receive your personal property cockpit by email — with market value and comparison data for your property.</div>
-    <a href="https://www.moneypark.ch/ch/mp/en/home.html" class="btn-secondary">Back to MoneyPark website →</a>
-  </div>
-</div>
-
-<!-- Loading overlay -->
-<div class="loading-overlay" id="loading-overlay">
-  <div class="loading-card">
-    <div class="spinner"></div>
-    <p style="font-weight:600; font-size:1.0625rem;">Submitting your request…</p>
-    <p style="color:var(--mp-gray); font-size:0.875rem; margin-top:0.5rem;">Please wait a moment.</p>
-  </div>
-</div>
+<!-- Debug toggle -->
+<button class="debug-toggle" id="debug-toggle-btn" onclick="toggleDebug()">DEV</button>
 
 <script>
-  var STEP_LABELS = ['My property', 'My financial situation', 'My refinancing', 'My offer'];
-  var WIZARD_TOTAL = 4;
-  var wizardCurrentStep = 0;
-  var wizardMaxStep = 0;
+  var CTX = {};
+  var aiMode = 'voice';
+  var widgetLaunched = false;
 
-  function renderStepper() {
-    var nav = document.getElementById('stepper-nav');
-    if (!nav) return;
-    var html = '';
-    for (var i = 0; i < WIZARD_TOTAL; i++) {
-      var cls = '';
-      if (i < wizardCurrentStep) cls = 'done';
-      else if (i === wizardCurrentStep) cls = 'active';
-      var check = '<span class="check-icon">✓</span>';
-      var num = '<span class="step-num">' + (i + 1) + '</span>';
-      html += '<div class="stepper-item ' + cls + '" onclick="wizardGo(' + i + ')">' + num + check + ' ' + STEP_LABELS[i] + '</div>';
-      if (i < WIZARD_TOTAL - 1) {
-        html += '<svg class="stepper-arrow" viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>';
+  function parseTokenFromUrl() {
+    var params = new URLSearchParams(window.location.search);
+    var token = params.get('token');
+    var action = params.get('action');
+    if (token) {
+      try {
+        var decoded = JSON.parse(atob(token.replace(/-/g, '+').replace(/_/g, '/')));
+        CTX.name = decoded.n || '';
+        CTX.email = decoded.e || '';
+        CTX.phone = decoded.p || '';
+        CTX.interest = decoded.i || 'Mortgage refinancing';
+        CTX.propertyAddress = decoded.a || '';
+        CTX.mortgageYear = decoded.my || '';
+        CTX.monthsToExpiry = decoded.me || '';
+        CTX.currentRate = decoded.cr || '';
+      } catch(e) { /* invalid token, use defaults */ }
+    }
+
+    var leadId = params.get('leadId') || params.get('lead_id') || 'demo-lead-001';
+    CTX.leadId = leadId;
+    CTX.action = action;
+
+    if (CTX.name) {
+      var firstName = CTX.name.split(' ')[0];
+      var heroTitle = document.getElementById('hero-title');
+      if (heroTitle) heroTitle.textContent = firstName + ', prepare your mortgage renewal with Anna';
+      var dvName = document.getElementById('dv-name');
+      if (dvName) dvName.value = CTX.name;
+      var cbName = document.getElementById('cb-name');
+      if (cbName) cbName.value = CTX.name;
+    }
+    if (CTX.phone) {
+      var cbPhone = document.getElementById('cb-phone');
+      if (cbPhone) cbPhone.value = CTX.phone;
+    }
+    if (CTX.propertyAddress) {
+      var dvAddr = document.getElementById('dv-property_address');
+      if (dvAddr) dvAddr.value = CTX.propertyAddress;
+    }
+    if (CTX.interest) {
+      var dvInt = document.getElementById('dv-interest');
+      if (dvInt) {
+        for (var i = 0; i < dvInt.options.length; i++) {
+          if (dvInt.options[i].value === CTX.interest) { dvInt.selectedIndex = i; break; }
+        }
       }
     }
-    nav.innerHTML = html;
-  }
+    if (CTX.monthsToExpiry) {
+      var dvM = document.getElementById('dv-months_to_expiry');
+      if (dvM) dvM.value = CTX.monthsToExpiry;
+    }
+    if (CTX.mortgageYear) {
+      var dvY = document.getElementById('dv-mortgage_year');
+      if (dvY) dvY.value = CTX.mortgageYear;
+    }
+    if (CTX.currentRate) {
+      var dvR = document.getElementById('dv-current_rate');
+      if (dvR) dvR.value = CTX.currentRate;
+    }
+    if (CTX.leadId && CTX.leadId !== 'demo-lead-001') {
+      var dvL = document.getElementById('dv-leadId');
+      if (dvL) dvL.value = CTX.leadId;
+    }
 
-  function renderWizard() {
-    renderStepper();
-    document.querySelectorAll('#page-self-onboard .wizard-step').forEach(function(el) {
-      el.classList.remove('active');
-    });
-    var active = document.querySelector('#page-self-onboard .wizard-step[data-step="' + wizardCurrentStep + '"]');
-    if (active) active.classList.add('active');
-  }
-
-  function wizardNext(fromStep) {
-    if (fromStep < WIZARD_TOTAL - 1) {
-      wizardCurrentStep = fromStep + 1;
-      if (wizardCurrentStep > wizardMaxStep) wizardMaxStep = wizardCurrentStep;
-      renderWizard();
-      window.scrollTo(0, 0);
+    if (action === 'callback') {
+      setTimeout(function() {
+        var cbSection = document.querySelector('.callback-section');
+        if (cbSection) cbSection.scrollIntoView({ behavior: 'smooth' });
+      }, 500);
     }
   }
 
-  function wizardBack() {
-    if (wizardCurrentStep > 0) {
-      wizardCurrentStep--;
-      renderWizard();
-      window.scrollTo(0, 0);
-    }
+  function acceptConsent() {
+    document.getElementById('consent-modal').classList.add('hidden');
+    document.getElementById('page-landing').classList.add('active');
   }
 
-  function wizardGo(step) {
-    if (step <= wizardMaxStep) {
-      wizardCurrentStep = step;
-      renderWizard();
-      window.scrollTo(0, 0);
-    }
+  document.getElementById('consent-checkbox').addEventListener('change', function() {
+    document.getElementById('consent-accept-btn').disabled = !this.checked;
+  });
+
+  function setAiMode(mode) {
+    aiMode = mode;
+    document.getElementById('mode-voice').classList.toggle('active', mode === 'voice');
+    document.getElementById('mode-text').classList.toggle('active', mode === 'text');
   }
 
-  function launchAgent() {
-    var vars = {
+  function getAgentVars() {
+    return {
       name: document.getElementById('dv-name').value,
       brand_name: document.getElementById('dv-brand_name').value,
       advisor_name: document.getElementById('dv-advisor_name').value,
@@ -772,76 +494,63 @@
       language_spoken: document.getElementById('dv-language_spoken').value,
       leadId: document.getElementById('dv-leadId').value
     };
+  }
+
+  function launchAgent() {
+    if (widgetLaunched) return;
+    widgetLaunched = true;
+
+    var vars = getAgentVars();
     var agentId = document.getElementById('dv-agent_id').value;
     var langCode = document.getElementById('dv-language_spoken').value;
     var customerName = document.getElementById('dv-name').value;
-    var greetings = { en: 'Hello ' + customerName + '?', de: 'Hallo ' + customerName + '?', fr: 'Bonjour ' + customerName + ' ?', it: 'Buongiorno ' + customerName + '?' };
+
+    var greetings = {
+      en: 'Hello ' + customerName + '?',
+      de: 'Hallo ' + customerName + '?',
+      fr: 'Bonjour ' + customerName + ' ?',
+      it: 'Buongiorno ' + customerName + '?'
+    };
     var firstMsg = greetings[langCode] || greetings['en'];
+
     var container = document.getElementById('ai-widget-container');
-    container.innerHTML = '<elevenlabs-convai agent-id="' + agentId + '" server-location="eu-residency" language="' + langCode + '" first-message="' + firstMsg.replace(/"/g, '&quot;') + '" dynamic-variables=\'' + JSON.stringify(vars) + '\'></elevenlabs-convai>';
-    document.getElementById('ai-vars-form').style.display = 'none';
-    document.getElementById('launch-agent-btn').style.display = 'none';
+    container.innerHTML = '<elevenlabs-convai agent-id="' + agentId
+      + '" server-location="eu-residency" language="' + langCode
+      + '" first-message="' + firstMsg.replace(/"/g, '&quot;')
+      + '" dynamic-variables=\'' + JSON.stringify(vars) + '\'></elevenlabs-convai>';
+
+    document.getElementById('start-ai-btn').style.display = 'none';
+    document.querySelector('.ai-mode-toggle').style.display = 'none';
+  }
+
+  function submitCallback() {
+    var name = document.getElementById('cb-name').value.trim();
+    var phone = document.getElementById('cb-phone').value.trim();
+    if (!name || !phone) {
+      alert('Please provide your name and phone number.');
+      return;
+    }
+    goToPage('callback-confirmed');
   }
 
   function goToPage(pageId) {
-    if (pageId === 'choose-path') {
-      var addrEl = document.getElementById('address-input');
-      var container = document.getElementById('address-bar-container');
-      if (addrEl && addrEl.value.trim()) {
-        container.innerHTML = '<div class="address-bar">Your property: ' + addrEl.value + '</div>';
-      } else if (container) {
-        container.innerHTML = '';
-      }
-    }
-    if (pageId === 'self-onboard') {
-      wizardCurrentStep = 0;
-      wizardMaxStep = 0;
-      renderWizard();
-    }
-    if (pageId === 'ai-assistant') {
-      document.getElementById('ai-widget-container').innerHTML = '';
-      document.getElementById('ai-vars-form').style.display = '';
-      document.getElementById('launch-agent-btn').style.display = '';
-      var addrInput = document.getElementById('address-input');
-      if (addrInput && addrInput.value.trim()) {
-        document.getElementById('dv-property_address').value = addrInput.value.trim();
-      }
-      var interestSelect = document.getElementById('interest-select');
-      if (interestSelect && interestSelect.value) {
-        var dvInterest = document.getElementById('dv-interest');
-        for (var i = 0; i < dvInterest.options.length; i++) {
-          if (dvInterest.options[i].value === interestSelect.options[interestSelect.selectedIndex].text) {
-            dvInterest.selectedIndex = i; break;
-          }
-        }
-      }
-    }
     document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
     var target = document.getElementById('page-' + pageId);
     if (target) { target.classList.add('active'); window.scrollTo(0, 0); }
   }
 
-  renderWizard();
+  function toggleDebug() {
+    var panel = document.getElementById('debug-panel');
+    panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+  }
 
-  (function() {
-    var params = new URLSearchParams(window.location.search);
-    var page = params.get('page');
-    if (page) {
-      document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
-      var target = document.getElementById('page-' + page);
-      if (target) target.classList.add('active');
-      if (page === 'choose-path' || page === 'self-onboard' || page === 'ai-assistant') {
-        var container = document.getElementById('address-bar-container');
-        if (container) container.innerHTML = '<div class="address-bar">Your property: Bahnhofstrasse 12, 8001 Zürich</div>';
-      }
-      var step = params.get('step');
-      if (step && page === 'self-onboard') {
-        wizardCurrentStep = parseInt(step);
-        wizardMaxStep = wizardCurrentStep;
-        renderWizard();
-      }
-    }
-  })();
+  parseTokenFromUrl();
+
+  var skipConsent = new URLSearchParams(window.location.search).get('consent');
+  if (skipConsent === 'skip') {
+    document.getElementById('consent-modal').classList.add('hidden');
+    document.getElementById('page-landing').classList.add('active');
+  }
 </script>
 </body>
 </html>

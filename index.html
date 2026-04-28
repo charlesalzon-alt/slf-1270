@@ -8,26 +8,31 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://www.moneypark.ch/content/dam/os/ch/mp/media/favicons/apple-touch-icon-180x180.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
   <style>
     :root {
-      --mp-teal: #008060;
-      --mp-teal-hover: #006B50;
-      --mp-teal-light: #E6F5F0;
-      --mp-dark: #1A1A1A;
+      --mp-teal: #2F738B;
+      --mp-teal-hover: #245D72;
+      --mp-teal-light: #E8F1EF;
+      --mp-teal-200: #A2BEC8;
+      --mp-mint: #C5DBD6;
+      --mp-red: #EA5E7C;
+      --mp-red-hover: #D44D6A;
+      --mp-yellow: #F3F3C6;
+      --mp-dark: #000000;
       --mp-dark-hover: #333333;
       --mp-text: #2C2C2C;
       --mp-soft: #F7F7F7;
       --mp-clouds: #E5E5E5;
-      --mp-sea: #A0A0A0;
+      --mp-sea: #999999;
       --mp-white: #ffffff;
-      --mp-gray: #6B6B6B;
-      --mp-mid-gray: #C2C2C2;
+      --mp-gray: #666666;
+      --mp-mid-gray: #CCCCCC;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { overflow-x: hidden; }
-    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--mp-dark); background: var(--mp-soft); min-height: 100vh; }
+    body { font-family: 'Fira Sans', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--mp-dark); background: var(--mp-soft); min-height: 100vh; }
     .page { display: none; min-height: 100vh; }
     .page.active { display: block; }
 
@@ -35,7 +40,7 @@
     .header { background: var(--mp-white); padding: 0.875rem 2rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--mp-clouds); }
     .header-brand { display: flex; align-items: center; gap: 1rem; }
     .header-logo { font-size: 1.25rem; font-weight: 700; color: var(--mp-dark); letter-spacing: 2px; text-transform: uppercase; display: flex; align-items: center; gap: 0.35rem; }
-    .header-logo .logo-icon { width: 20px; height: 20px; fill: var(--mp-dark); }
+    .header-logo .logo-icon { width: 16px; height: 22px; fill: var(--mp-dark); }
     .header-helvetia { font-size: 0.6875rem; color: var(--mp-gray); border-left: 1px solid var(--mp-clouds); padding-left: 1rem; line-height: 1.3; letter-spacing: 0.3px; }
     .header-right { display: flex; align-items: center; gap: 1.25rem; }
     .header-phone { color: var(--mp-dark); text-decoration: none; font-size: 0.9375rem; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
@@ -58,16 +63,17 @@
     .modal-card .consent-check label { font-size: 0.875rem; color: var(--mp-text); line-height: 1.5; cursor: pointer; }
 
     /* Buttons */
-    .btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--mp-dark); color: var(--mp-white); border: none; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; text-decoration: none; min-height: 44px; }
+    .btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--mp-dark); color: var(--mp-white); border: none; border-radius: 4px; font-family: 'Fira Sans', sans-serif; font-size: 0.9375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; text-decoration: none; min-height: 44px; }
     .btn-primary:hover { background: var(--mp-dark-hover); }
     .btn-primary.full-width { width: 100%; }
-    .btn-primary.btn-teal { background: var(--mp-teal); }
-    .btn-primary.btn-teal:hover { background: var(--mp-teal-hover); }
+    .btn-primary.btn-teal { background: var(--mp-red); }
+    .btn-primary.btn-teal:hover { background: var(--mp-red-hover); }
     .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
-    .btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: transparent; color: var(--mp-dark); border: 2px solid var(--mp-dark); border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; text-decoration: none; min-height: 44px; }
+    .btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: transparent; color: var(--mp-dark); border: 2px solid var(--mp-dark); border-radius: 4px; font-family: 'Fira Sans', sans-serif; font-size: 0.9375rem; font-weight: 600; cursor: pointer; transition: all 0.2s; text-decoration: none; min-height: 44px; }
     .btn-secondary:hover { background: var(--mp-soft); }
-    .ghost-link { color: var(--mp-teal); text-decoration: none; font-size: 0.9375rem; font-weight: 500; cursor: pointer; border: none; background: none; font-family: 'Inter', sans-serif; }
+    .ghost-link { color: var(--mp-teal); text-decoration: none; font-size: 0.9375rem; font-weight: 500; cursor: pointer; border: none; background: none; font-family: 'Fira Sans', sans-serif; }
     .ghost-link:hover { text-decoration: underline; }
+    a { color: var(--mp-teal); }
 
     /* Landing Page Hero */
     .landing-hero { background: var(--mp-dark); padding: 3.5rem 2rem 4rem; text-align: center; }
@@ -79,7 +85,7 @@
     .usp-section { max-width: 800px; margin: -2rem auto 0; padding: 0 1.5rem 2rem; position: relative; z-index: 1; }
     .usp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
     .usp-card { background: var(--mp-white); border-radius: 12px; padding: 1.75rem 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); text-align: center; }
-    .usp-card .usp-icon { width: 48px; height: 48px; background: var(--mp-teal-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+    .usp-card .usp-icon { width: 48px; height: 48px; background: var(--mp-mint); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
     .usp-card .usp-icon svg { width: 24px; height: 24px; stroke: var(--mp-teal); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
     .usp-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
     .usp-card p { font-size: 0.875rem; color: var(--mp-gray); line-height: 1.6; }
@@ -101,11 +107,11 @@
     .ai-section .ai-cta-card h2 { font-size: 1.375rem; font-weight: 700; margin-bottom: 0.5rem; }
     .ai-section .ai-cta-card p { font-size: 0.9375rem; color: var(--mp-gray); margin-bottom: 1.5rem; line-height: 1.6; }
     .ai-section .ai-mode-toggle { display: flex; gap: 0.75rem; justify-content: center; margin-bottom: 1.25rem; }
-    .ai-mode-toggle button { padding: 0.5rem 1.25rem; border-radius: 100px; border: 2px solid var(--mp-clouds); background: var(--mp-white); font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: var(--mp-dark); }
+    .ai-mode-toggle button { padding: 0.5rem 1.25rem; border-radius: 100px; border: 2px solid var(--mp-clouds); background: var(--mp-white); font-family: 'Fira Sans', sans-serif; font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: var(--mp-dark); }
     .ai-mode-toggle button.active { background: var(--mp-teal-light); border-color: var(--mp-teal); color: var(--mp-teal); font-weight: 600; }
     .ai-mode-toggle button:hover { border-color: var(--mp-teal); }
     .ai-widget-wrapper { min-height: 120px; margin-top: 1rem; }
-    .ai-disclosure { background: var(--mp-teal-light); border-radius: 8px; padding: 0.875rem 1.25rem; font-size: 0.8125rem; line-height: 1.6; color: var(--mp-text); text-align: left; margin-bottom: 1.25rem; }
+    .ai-disclosure { background: var(--mp-mint); border-radius: 8px; padding: 0.875rem 1.25rem; font-size: 0.8125rem; line-height: 1.6; color: var(--mp-text); text-align: left; margin-bottom: 1.25rem; }
 
     /* Callback section */
     .callback-divider { display: flex; align-items: center; gap: 1rem; max-width: 640px; margin: 0 auto; padding: 0 1.5rem; }
@@ -117,7 +123,7 @@
     .callback-card p { font-size: 0.9375rem; color: var(--mp-gray); line-height: 1.6; margin-bottom: 1.25rem; }
     .callback-card .form-group { margin-bottom: 1rem; }
     .callback-card .form-group label { display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.375rem; color: var(--mp-dark); }
-    .callback-card .form-group input, .callback-card .form-group select, .callback-card .form-group textarea { width: 100%; padding: 0.75rem 0.875rem; border: 1px solid var(--mp-clouds); border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.9375rem; color: var(--mp-dark); background: var(--mp-white); }
+    .callback-card .form-group input, .callback-card .form-group select, .callback-card .form-group textarea { width: 100%; padding: 0.75rem 0.875rem; border: 1px solid var(--mp-clouds); border-radius: 4px; font-family: 'Fira Sans', sans-serif; font-size: 0.9375rem; color: var(--mp-dark); background: var(--mp-white); }
     .callback-card .form-group textarea { resize: vertical; min-height: 80px; }
     .callback-card .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     @media (max-width: 520px) { .callback-card .form-row { grid-template-columns: 1fr; } }
@@ -127,7 +133,7 @@
     .debug-panel h3 { color: #aaa; font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
     .debug-panel .form-group { margin-bottom: 0.75rem; }
     .debug-panel .form-group label { display: block; font-size: 0.8125rem; font-weight: 500; margin-bottom: 0.25rem; color: #999; }
-    .debug-panel .form-group input, .debug-panel .form-group select { width: 100%; padding: 0.5rem 0.75rem; border: 1px solid #444; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.8125rem; color: #eee; background: #1a1a1a; }
+    .debug-panel .form-group input, .debug-panel .form-group select { width: 100%; padding: 0.5rem 0.75rem; border: 1px solid #444; border-radius: 4px; font-family: 'Fira Sans', sans-serif; font-size: 0.8125rem; color: #eee; background: #1a1a1a; }
     .debug-panel .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
     .debug-panel .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; }
     .debug-toggle { position: fixed; bottom: 1rem; left: 1rem; z-index: 100; background: #333; color: #999; border: 1px solid #555; border-radius: 6px; padding: 0.375rem 0.75rem; font-size: 0.6875rem; font-family: monospace; cursor: pointer; }
@@ -135,7 +141,7 @@
 
     /* Confirmation page */
     .confirm-section { text-align: center; max-width: 520px; margin: 0 auto; padding: 4rem 1.5rem; }
-    .confirm-icon { width: 80px; height: 80px; background: var(--mp-teal-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; }
+    .confirm-icon { width: 80px; height: 80px; background: var(--mp-mint); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; }
     .confirm-icon svg { width: 40px; height: 40px; stroke: var(--mp-teal); fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
     .confirm-section h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem; }
     .confirm-section .confirm-body { font-size: 1.0625rem; color: var(--mp-dark); line-height: 1.7; margin-bottom: 2rem; }
@@ -180,7 +186,7 @@
 <div class="modal-overlay" id="consent-modal">
   <div class="modal-card">
     <div class="modal-logo">
-      <span style="font-size:1.25rem;font-weight:700;color:var(--mp-dark);letter-spacing:2px;">MONEY<svg style="width:18px;height:18px;fill:var(--mp-dark);vertical-align:middle;margin:0 2px;" viewBox="0 0 24 24"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/></svg>PARK</span>
+      <span style="font-size:1.25rem;font-weight:700;color:var(--mp-dark);letter-spacing:2px;">MONEY<svg style="width:18px;height:24px;fill:var(--mp-dark);vertical-align:middle;margin:0 2px;" viewBox="0 0 30 42"><path d="M15 0C15 0 0 14 0 26c0 8 6 14 13 15l2-15L7 18l4-1 2-9 2 9 4 1-8 8 2 15c7-1 13-7 13-15C26 14 15 0 15 0z"/></svg>PARK</span>
       <span style="font-size:0.625rem;color:var(--mp-gray);margin-left:0.5rem;">a company of <strong>helvetia</strong></span>
     </div>
     <h2>Before we begin</h2>
@@ -206,7 +212,7 @@
 <div class="page" id="page-landing">
   <header class="header">
     <div class="header-brand">
-      <div class="header-logo">MONEY<svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/></svg>PARK</div>
+      <div class="header-logo">MONEY<svg class="logo-icon" viewBox="0 0 30 42"><path d="M15 0C15 0 0 14 0 26c0 8 6 14 13 15l2-15L7 18l4-1 2-9 2 9 4 1-8 8 2 15c7-1 13-7 13-15C26 14 15 0 15 0z"/></svg>PARK</div>
       <div class="header-helvetia">a company of<br><strong>helvetia</strong></div>
     </div>
     <div class="header-right">
@@ -340,7 +346,7 @@
       <div class="mp-footer-col"><strong>News &amp; media</strong><a href="#">Press releases</a><a href="#">Publications</a><a href="#">Blog</a></div>
       <div class="mp-footer-col"><strong>About us</strong><a href="#">Partners of MoneyPark</a><a href="#">B2B solutions</a></div>
       <div class="header-brand" style="margin-left:auto;">
-        <div class="header-logo" style="font-size:1rem;">MONEY<svg class="logo-icon" viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/></svg>PARK</div>
+        <div class="header-logo" style="font-size:1rem;">MONEY<svg class="logo-icon" viewBox="0 0 30 42" style="width:14px;height:20px;"><path d="M15 0C15 0 0 14 0 26c0 8 6 14 13 15l2-15L7 18l4-1 2-9 2 9 4 1-8 8 2 15c7-1 13-7 13-15C26 14 15 0 15 0z"/></svg>PARK</div>
         <div class="header-helvetia">a company of<br><strong>helvetia</strong></div>
       </div>
     </div>
@@ -352,7 +358,7 @@
 <div class="page" id="page-callback">
   <header class="header">
     <div class="header-brand">
-      <div class="header-logo">MONEY<svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/></svg>PARK</div>
+      <div class="header-logo">MONEY<svg class="logo-icon" viewBox="0 0 30 42"><path d="M15 0C15 0 0 14 0 26c0 8 6 14 13 15l2-15L7 18l4-1 2-9 2 9 4 1-8 8 2 15c7-1 13-7 13-15C26 14 15 0 15 0z"/></svg>PARK</div>
       <div class="header-helvetia">a company of<br><strong>helvetia</strong></div>
     </div>
     <div class="header-right">
@@ -397,7 +403,7 @@
       <div class="mp-footer-col"><strong>News &amp; media</strong><a href="#">Press releases</a><a href="#">Publications</a><a href="#">Blog</a></div>
       <div class="mp-footer-col"><strong>About us</strong><a href="#">Partners of MoneyPark</a><a href="#">B2B solutions</a></div>
       <div class="header-brand" style="margin-left:auto;">
-        <div class="header-logo" style="font-size:1rem;">MONEY<svg class="logo-icon" viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/></svg>PARK</div>
+        <div class="header-logo" style="font-size:1rem;">MONEY<svg class="logo-icon" viewBox="0 0 30 42" style="width:14px;height:20px;"><path d="M15 0C15 0 0 14 0 26c0 8 6 14 13 15l2-15L7 18l4-1 2-9 2 9 4 1-8 8 2 15c7-1 13-7 13-15C26 14 15 0 15 0z"/></svg>PARK</div>
         <div class="header-helvetia">a company of<br><strong>helvetia</strong></div>
       </div>
     </div>
@@ -408,7 +414,7 @@
 <!-- ==================== PAGE: CALLBACK CONFIRMED ==================== -->
 <div class="page" id="page-callback-confirmed">
   <header class="header">
-    <div class="header-brand"><div class="header-logo">MONEY<svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 2C8 2 4 6 4 10c0 6 8 12 8 12s8-6 8-12c0-4-4-8-8-8z"/></svg>PARK</div><div class="header-helvetia">a company of<br><strong>helvetia</strong></div></div>
+    <div class="header-brand"><div class="header-logo">MONEY<svg class="logo-icon" viewBox="0 0 30 42"><path d="M15 0C15 0 0 14 0 26c0 8 6 14 13 15l2-15L7 18l4-1 2-9 2 9 4 1-8 8 2 15c7-1 13-7 13-15C26 14 15 0 15 0z"/></svg>PARK</div><div class="header-helvetia">a company of<br><strong>helvetia</strong></div></div>
     <div class="header-right"><a href="tel:+41442007597" class="header-phone"><svg class="phone-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+41 44 200 75 97</a></div>
   </header>
   <div class="confirm-section">

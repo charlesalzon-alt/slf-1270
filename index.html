@@ -442,6 +442,12 @@
         CTX.mortgageYear = decoded.my || '';
         CTX.monthsToExpiry = decoded.me || '';
         CTX.currentRate = decoded.cr || '';
+        CTX.brandName = decoded.bn || '';
+        CTX.advisorName = decoded.an || '';
+        CTX.agentId = decoded.ag || '';
+        CTX.languageSpoken = decoded.lg || '';
+        CTX.priorContact = decoded.pc || '';
+        CTX.protocol = decoded.pr || '';
       } catch(e) { /* invalid token, use defaults */ }
     }
 
@@ -490,10 +496,37 @@
       var dvL = document.getElementById('dv-leadId');
       if (dvL) dvL.value = CTX.leadId;
     }
-
     if (CTX.email) {
       var cbEmail = document.getElementById('cb-email');
       if (cbEmail) cbEmail.value = CTX.email;
+    }
+    if (CTX.brandName) {
+      var dvBn = document.getElementById('dv-brand_name');
+      if (dvBn) dvBn.value = CTX.brandName;
+    }
+    if (CTX.advisorName) {
+      var dvAn = document.getElementById('dv-advisor_name');
+      if (dvAn) dvAn.value = CTX.advisorName;
+    }
+    if (CTX.agentId) {
+      var dvAg = document.getElementById('dv-agent_id');
+      if (dvAg) dvAg.value = CTX.agentId;
+    }
+    if (CTX.languageSpoken) {
+      var dvLg = document.getElementById('dv-language_spoken');
+      if (dvLg) {
+        for (var i = 0; i < dvLg.options.length; i++) {
+          if (dvLg.options[i].value === CTX.languageSpoken) { dvLg.selectedIndex = i; break; }
+        }
+      }
+    }
+    if (CTX.priorContact) {
+      var dvPc = document.getElementById('dv-PRIOR_CONTACT');
+      if (dvPc) {
+        for (var i = 0; i < dvPc.options.length; i++) {
+          if (dvPc.options[i].value === CTX.priorContact) { dvPc.selectedIndex = i; break; }
+        }
+      }
     }
   }
 
@@ -510,6 +543,8 @@
   function getAgentVars() {
     return {
       name: document.getElementById('dv-name').value,
+      email: CTX.email || '',
+      phone: CTX.phone || '',
       brand_name: document.getElementById('dv-brand_name').value,
       advisor_name: document.getElementById('dv-advisor_name').value,
       PRIOR_CONTACT: document.getElementById('dv-PRIOR_CONTACT').value,
@@ -519,7 +554,9 @@
       property_address: document.getElementById('dv-property_address').value,
       interest: document.getElementById('dv-interest').value,
       language_spoken: document.getElementById('dv-language_spoken').value,
-      leadId: document.getElementById('dv-leadId').value
+      leadId: document.getElementById('dv-leadId').value,
+      channel: 'inbound_widget',
+      protocol: CTX.protocol || ''
     };
   }
 

@@ -46,6 +46,9 @@
     .header-phone { color: var(--mp-dark); text-decoration: none; font-size: 0.9375rem; font-weight: 500; display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
     .header-phone:hover { color: var(--mp-teal); }
     .phone-icon { width: 18px; height: 18px; fill: currentColor; }
+    .header-spec-link { color: var(--mp-gray); text-decoration: none; font-size: 0.8125rem; font-weight: 500; display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.4rem 0.75rem; border: 1px solid var(--mp-clouds); border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+    .header-spec-link:hover { color: var(--mp-dark); border-color: var(--mp-dark); }
+    .header-spec-link svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
 
     /* Consent Modal */
     .modal-overlay { position: fixed; inset: 0; background: rgba(26,26,46,0.6); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 1rem; }
@@ -167,6 +170,8 @@
       .header { padding: 0.75rem 1rem; }
       .header-phone { font-size: 0; gap: 0; min-height: 44px; min-width: 44px; justify-content: center; border-radius: 8px; }
       .header-phone .phone-icon { width: 22px; height: 22px; }
+      .header-spec-link { font-size: 0; gap: 0; padding: 0.5rem; min-height: 40px; min-width: 40px; justify-content: center; }
+      .header-spec-link svg { width: 18px; height: 18px; }
       .header-helvetia { display: none; }
       .landing-hero { padding: 2.5rem 1.25rem 3rem; }
       .landing-hero h1 { font-size: 1.375rem; }
@@ -214,6 +219,12 @@
     <div class="header-brand">
       <div class="header-logo">MONEY<svg class="logo-icon" viewBox="0 0 30 42"><path d="M15 0C15 0 0 14 0 26c0 8 6 14 13 15l2-15L7 18l4-1 2-9 2 9 4 1-8 8 2 15c7-1 13-7 13-15C26 14 15 0 15 0z"/></svg>PARK</div>
       <div class="header-helvetia">a company of<br><strong>helvetia</strong></div>
+    </div>
+    <div class="header-right">
+      <a class="header-spec-link" href="https://docs.google.com/document/d/1FbAgaPTqahS9vfzauQ7vL1034nopVojexlwAvzuVESc/edit?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Agent specification — system prompt and knowledge base">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 12h8v2H8zm0 4h8v2H8z"/></svg>
+        <span>Agent spec</span>
+      </a>
     </div>
   </header>
 
@@ -358,6 +369,12 @@
       <div class="header-logo">MONEY<svg class="logo-icon" viewBox="0 0 30 42"><path d="M15 0C15 0 0 14 0 26c0 8 6 14 13 15l2-15L7 18l4-1 2-9 2 9 4 1-8 8 2 15c7-1 13-7 13-15C26 14 15 0 15 0z"/></svg>PARK</div>
       <div class="header-helvetia">a company of<br><strong>helvetia</strong></div>
     </div>
+    <div class="header-right">
+      <a class="header-spec-link" href="https://docs.google.com/document/d/1FbAgaPTqahS9vfzauQ7vL1034nopVojexlwAvzuVESc/edit?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Agent specification — system prompt and knowledge base">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 12h8v2H8zm0 4h8v2H8z"/></svg>
+        <span>Agent spec</span>
+      </a>
+    </div>
   </header>
 
   <section class="landing-hero" style="padding:2.5rem 2rem 3rem;">
@@ -409,6 +426,12 @@
 <div class="page" id="page-callback-confirmed">
   <header class="header">
     <div class="header-brand"><div class="header-logo">MONEY<svg class="logo-icon" viewBox="0 0 30 42"><path d="M15 0C15 0 0 14 0 26c0 8 6 14 13 15l2-15L7 18l4-1 2-9 2 9 4 1-8 8 2 15c7-1 13-7 13-15C26 14 15 0 15 0z"/></svg>PARK</div><div class="header-helvetia">a company of<br><strong>helvetia</strong></div></div>
+    <div class="header-right">
+      <a class="header-spec-link" href="https://docs.google.com/document/d/1FbAgaPTqahS9vfzauQ7vL1034nopVojexlwAvzuVESc/edit?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="Agent specification — system prompt and knowledge base">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 12h8v2H8zm0 4h8v2H8z"/></svg>
+        <span>Agent spec</span>
+      </a>
+    </div>
   </header>
   <div class="confirm-section">
     <div class="confirm-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>

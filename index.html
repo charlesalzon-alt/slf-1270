@@ -338,8 +338,8 @@
   <div class="debug-panel" id="debug-panel" style="display:none;">
     <h3>Agent context variables — testing</h3>
     <div class="form-row">
-      <div class="form-group"><label>Customer name</label><input type="text" id="dv-name" value="Charles Alzon"></div>
-      <div class="form-group"><label>Property address</label><input type="text" id="dv-property_address" value="Bahnhofstrasse 12, 8001 Zürich"></div>
+      <div class="form-group"><label>Customer name</label><input type="text" id="dv-name" value="Hans Müller"></div>
+      <div class="form-group"><label>Property address</label><input type="text" id="dv-property_address" value="Bahnhofstrasse 1, 8001 Zürich"></div>
     </div>
     <div class="form-row">
       <div class="form-group"><label>Interest</label>
@@ -360,19 +360,32 @@
       </div>
     </div>
     <div class="form-row-3">
-      <div class="form-group"><label>Months to expiry</label><input type="number" id="dv-months_to_expiry" value="11"></div>
-      <div class="form-group"><label>Mortgage year</label><input type="number" id="dv-mortgage_year" value="2016"></div>
-      <div class="form-group"><label>Current rate (%)</label><input type="text" id="dv-current_rate" value="1.45"></div>
+      <div class="form-group"><label>Months to expiry</label><input type="number" id="dv-months_to_expiry" value="12"></div>
+      <div class="form-group"><label>Mortgage year</label><input type="number" id="dv-mortgage_year" value="2021"></div>
+      <div class="form-group"><label>Current rate (%)</label><input type="text" id="dv-current_rate" value="3.6"></div>
     </div>
     <div class="form-row">
-      <div class="form-group"><label>Advisor name</label><input type="text" id="dv-advisor_name" value="Stefan Heitmann"></div>
+      <div class="form-group"><label>Advisor name</label><input type="text" id="dv-advisor_name" value="Alexandre Pachoud"></div>
       <div class="form-group"><label>Brand name</label><input type="text" id="dv-brand_name" value="MoneyPark"></div>
     </div>
     <div class="form-row-3">
-      <div class="form-group"><label>Prior contact</label>
-        <select id="dv-PRIOR_CONTACT"><option value="false" selected>No</option><option value="true">Yes</option></select>
+      <div class="form-group"><label>Protocol</label>
+        <select id="dv-PROTOCOL">
+          <option value="ONBOARD" selected>ONBOARD</option>
+          <option value="REFI_INFO">REFI_INFO</option>
+          <option value="TIME_TO_ACT">TIME_TO_ACT</option>
+          <option value="TIME_TO_ACT_URGENT">TIME_TO_ACT_URGENT</option>
+          <option value="TIME_IS_NOW">TIME_IS_NOW</option>
+          <option value="RED_ZONE">RED_ZONE</option>
+          <option value="BACKUP">BACKUP</option>
+        </select>
       </div>
-      <div class="form-group"><label>Lead ID</label><input type="text" id="dv-leadId" value="demo-lead-001"></div>
+      <div class="form-group"><label>Prior contact</label>
+        <select id="dv-PRIOR_CONTACT"><option value="false">No</option><option value="true" selected>Yes</option></select>
+      </div>
+      <div class="form-group"><label>Lead ID</label><input type="text" id="dv-leadId" value="550e8400-e29b-41d4-a716-446655440000" style="font-size:0.7rem;"></div>
+    </div>
+    <div class="form-row">
       <div class="form-group"><label>Agent ID</label><input type="text" id="dv-agent_id" value="agent_0301khnwgrw0fkpbhf4am3f8npdx" style="font-size:0.7rem;"></div>
     </div>
   </div>
@@ -503,8 +516,8 @@
       } catch(e) { /* invalid token, use defaults */ }
     }
 
-    var leadId = params.get('leadId') || params.get('lead_id') || 'demo-lead-001';
-    CTX.leadId = leadId;
+    var leadId = params.get('leadId') || params.get('lead_id');
+    if (leadId) CTX.leadId = leadId;
     CTX.action = action;
 
     if (CTX.name) {
@@ -544,9 +557,17 @@
       var dvR = document.getElementById('dv-current_rate');
       if (dvR) dvR.value = CTX.currentRate;
     }
-    if (CTX.leadId && CTX.leadId !== 'demo-lead-001') {
+    if (CTX.leadId) {
       var dvL = document.getElementById('dv-leadId');
       if (dvL) dvL.value = CTX.leadId;
+    }
+    if (CTX.protocol) {
+      var dvProto = document.getElementById('dv-PROTOCOL');
+      if (dvProto) {
+        for (var i = 0; i < dvProto.options.length; i++) {
+          if (dvProto.options[i].value === CTX.protocol) { dvProto.selectedIndex = i; break; }
+        }
+      }
     }
     if (CTX.email) {
       var cbEmail = document.getElementById('cb-email');
@@ -593,6 +614,7 @@
   });
 
   function getAgentVars() {
+    var protoEl = document.getElementById('dv-PROTOCOL');
     return {
       name: document.getElementById('dv-name').value,
       email: CTX.email || '',
@@ -600,6 +622,7 @@
       brand_name: document.getElementById('dv-brand_name').value,
       advisor_name: document.getElementById('dv-advisor_name').value,
       PRIOR_CONTACT: document.getElementById('dv-PRIOR_CONTACT').value,
+      PROTOCOL: CTX.protocol || (protoEl ? protoEl.value : 'ONBOARD'),
       mortgage_year: document.getElementById('dv-mortgage_year').value,
       months_to_expiry: document.getElementById('dv-months_to_expiry').value,
       current_rate: document.getElementById('dv-current_rate').value,
@@ -607,8 +630,7 @@
       interest: document.getElementById('dv-interest').value,
       language_spoken: document.getElementById('dv-language_spoken').value,
       leadId: document.getElementById('dv-leadId').value,
-      channel: 'inbound_widget',
-      protocol: CTX.protocol || ''
+      channel: 'inbound_widget'
     };
   }
 

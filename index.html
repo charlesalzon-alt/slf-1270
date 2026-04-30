@@ -371,9 +371,9 @@
     <div class="form-row-3">
       <div class="form-group"><label>Protocol</label>
         <select id="dv-PROTOCOL">
-          <option value="ONBOARD" selected>ONBOARD</option>
+          <option value="ONBOARD">ONBOARD</option>
           <option value="REFI_INFO">REFI_INFO</option>
-          <option value="TIME_TO_ACT">TIME_TO_ACT</option>
+          <option value="TIME_TO_ACT" selected>TIME_TO_ACT</option>
           <option value="TIME_TO_ACT_URGENT">TIME_TO_ACT_URGENT</option>
           <option value="TIME_IS_NOW">TIME_IS_NOW</option>
           <option value="RED_ZONE">RED_ZONE</option>
@@ -622,7 +622,7 @@
       brand_name: document.getElementById('dv-brand_name').value,
       advisor_name: document.getElementById('dv-advisor_name').value,
       PRIOR_CONTACT: document.getElementById('dv-PRIOR_CONTACT').value,
-      PROTOCOL: CTX.protocol || (protoEl ? protoEl.value : 'ONBOARD'),
+      PROTOCOL: CTX.protocol || (protoEl ? protoEl.value : 'TIME_TO_ACT'),
       mortgage_year: document.getElementById('dv-mortgage_year').value,
       months_to_expiry: document.getElementById('dv-months_to_expiry').value,
       current_rate: document.getElementById('dv-current_rate').value,

@@ -113,8 +113,26 @@
     .ai-mode-toggle button { padding: 0.5rem 1.25rem; border-radius: 100px; border: 2px solid var(--mp-clouds); background: var(--mp-white); font-family: 'Fira Sans', sans-serif; font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: var(--mp-dark); }
     .ai-mode-toggle button.active { background: var(--mp-teal-light); border-color: var(--mp-teal); color: var(--mp-teal); font-weight: 600; }
     .ai-mode-toggle button:hover { border-color: var(--mp-teal); }
-    .ai-widget-wrapper { min-height: 120px; margin-top: 1rem; }
+    .ai-widget-wrapper { display: none; }
     .ai-disclosure { background: var(--mp-mint); border-radius: 8px; padding: 0.875rem 1.25rem; font-size: 0.8125rem; line-height: 1.6; color: var(--mp-text); text-align: left; margin-bottom: 1.25rem; }
+
+    /* Anna launch CTA inside AI card */
+    .ai-card-cta { display: flex; align-items: center; gap: 1rem; width: 100%; padding: 1rem 1.5rem; background: var(--mp-dark); color: var(--mp-white); border: none; border-radius: 8px; font-family: 'Fira Sans', sans-serif; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s, background 0.2s; box-shadow: 0 4px 16px rgba(0,0,0,0.15); animation: annaPulse 2.4s ease-in-out infinite; text-align: left; }
+    .ai-card-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(0,0,0,0.22); background: #000; animation: none; }
+    .ai-card-cta:focus-visible { outline: 3px solid var(--mp-teal); outline-offset: 3px; }
+    .ai-card-cta-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--mp-mint); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .ai-card-cta-avatar svg { width: 22px; height: 22px; fill: var(--mp-dark); }
+    .ai-card-cta-body { flex: 1; }
+    .ai-card-cta-body strong { display: block; font-size: 1rem; font-weight: 600; margin-bottom: 0.125rem; color: var(--mp-white); }
+    .ai-card-cta-body span { display: block; font-size: 0.8125rem; color: rgba(255,255,255,0.72); font-weight: 400; }
+    .ai-card-cta-arrow { font-size: 1.25rem; flex-shrink: 0; transition: transform 0.2s; line-height: 1; }
+    .ai-card-cta:hover .ai-card-cta-arrow { transform: translateX(4px); }
+    @keyframes annaPulse {
+      0%, 100% { box-shadow: 0 4px 16px rgba(0,0,0,0.15), 0 0 0 0 rgba(0,0,0,0.35); }
+      50%      { box-shadow: 0 4px 16px rgba(0,0,0,0.15), 0 0 0 12px rgba(0,0,0,0); }
+    }
+    .ai-card-cta-hint { font-size: 0.8125rem; color: var(--mp-gray); text-align: center; margin-top: 0.875rem; }
+    .ai-card-cta-hint kbd { background: var(--mp-soft); border: 1px solid var(--mp-clouds); border-radius: 4px; padding: 0.0625rem 0.375rem; font-family: inherit; font-size: 0.75rem; }
 
     /* Callback section */
     .callback-divider { display: flex; align-items: center; gap: 1rem; max-width: 640px; margin: 0 auto; padding: 0 1.5rem; }
@@ -300,7 +318,18 @@
       <div class="ai-disclosure">
         <strong>Note:</strong> You are speaking with an AI-powered assistant, not a human. Your data is protected under GDPR and Swiss data protection law, and will be shared exclusively with your MoneyPark advisor.
       </div>
-      <div id="ai-widget-container" class="ai-widget-wrapper"></div>
+      <button class="ai-card-cta" id="anna-launch-btn" type="button" onclick="openAndStartWidget()" aria-label="Start a conversation with Anna">
+        <span class="ai-card-cta-avatar" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 00-1.02.24l-2.2 2.2a15.07 15.07 0 01-6.59-6.58l2.2-2.21a1 1 0 00.25-1.01A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+        </span>
+        <span class="ai-card-cta-body">
+          <strong>Start a conversation with Anna</strong>
+          <span>Voice or text &middot; 5&ndash;10 minutes &middot; free</span>
+        </span>
+        <span class="ai-card-cta-arrow" aria-hidden="true">&rarr;</span>
+      </button>
+      <p class="ai-card-cta-hint">You can also click the assistant in the bottom-right corner at any time.</p>
+      <div id="ai-widget-container" class="ai-widget-wrapper" aria-hidden="true"></div>
     </div>
   </section>
 
@@ -580,6 +609,49 @@
       channel: 'inbound_widget',
       protocol: CTX.protocol || ''
     };
+  }
+
+  // Programmatically expand the floating ElevenLabs widget AND start the call.
+  // Tries the public API first, then falls back to clicking the widget / its shadow-DOM start button.
+  function openAndStartWidget() {
+    var widget = document.querySelector('elevenlabs-convai');
+    if (!widget) {
+      launchAgent();
+      setTimeout(openAndStartWidget, 250);
+      return;
+    }
+
+    var startMethods = ['startSession', 'startCall', 'start', 'open'];
+    for (var i = 0; i < startMethods.length; i++) {
+      var fn = widget[startMethods[i]];
+      if (typeof fn === 'function') {
+        try { fn.call(widget); return; } catch (e) { /* try next */ }
+      }
+    }
+
+    function clickInsideShadow(root) {
+      if (!root) return false;
+      var selectors = [
+        'button[aria-label*="tart" i]',
+        'button[data-testid*="start" i]',
+        'button[class*="start" i]',
+        'button[class*="call" i]',
+        '[role="button"][class*="start" i]'
+      ];
+      for (var i = 0; i < selectors.length; i++) {
+        var el = root.querySelector(selectors[i]);
+        if (el) { el.click(); return true; }
+      }
+      var anyBtn = root.querySelector('button, [role="button"]');
+      if (anyBtn) { anyBtn.click(); return true; }
+      return false;
+    }
+
+    widget.click();
+    if (!clickInsideShadow(widget.shadowRoot)) {
+      setTimeout(function () { clickInsideShadow(widget.shadowRoot); }, 250);
+      setTimeout(function () { clickInsideShadow(widget.shadowRoot); }, 800);
+    }
   }
 
   function launchAgent() {

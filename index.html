@@ -113,7 +113,8 @@
     .ai-mode-toggle button { padding: 0.5rem 1.25rem; border-radius: 100px; border: 2px solid var(--mp-clouds); background: var(--mp-white); font-family: 'Fira Sans', sans-serif; font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: var(--mp-dark); }
     .ai-mode-toggle button.active { background: var(--mp-teal-light); border-color: var(--mp-teal); color: var(--mp-teal); font-weight: 600; }
     .ai-mode-toggle button:hover { border-color: var(--mp-teal); }
-    .ai-widget-wrapper { display: none; }
+    /* Mount point only. Widget renders as a fixed-position floating button in the bottom-right via its shadow DOM. We must NOT set display:none here, or the web component will not initialize. */
+    .ai-widget-wrapper { position: absolute; width: 0; height: 0; overflow: hidden; }
     .ai-disclosure { background: var(--mp-mint); border-radius: 8px; padding: 0.875rem 1.25rem; font-size: 0.8125rem; line-height: 1.6; color: var(--mp-text); text-align: left; margin-bottom: 1.25rem; }
 
     /* Anna launch CTA inside AI card */
